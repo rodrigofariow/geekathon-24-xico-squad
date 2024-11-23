@@ -45,21 +45,9 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
     const file = files[0];
     const reader = new FileReader();
 
-    reader.onload = async (e) => {
+    reader.onload = (e) => {
       if (e.target && typeof e.target.result === 'string') {
         onImageUpload(e.target.result);
-
-        try {
-          setIsLoading(true);
-          const result = await captureWines(e.target.result);
-          console.log('Wine capture result:', result);
-          // TODO: Handle the successful response
-        } catch (error) {
-          console.error('Failed to capture wines:', error);
-          // TODO: Handle the error state
-        } finally {
-          setIsLoading(false);
-        }
       }
     };
 

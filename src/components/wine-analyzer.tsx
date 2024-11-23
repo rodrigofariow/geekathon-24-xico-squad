@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ImageUploader } from './image-uploader';
 import { WineList } from './wine-list';
 import { Wine } from 'lucide-react';
+import { captureWines } from '@/lib/actions';
 
 export function WineAnalyzer() {
   const [image, setImage] = useState<string | null>(null);
@@ -16,7 +17,6 @@ export function WineAnalyzer() {
   >([]);
 
   const handleImageUpload = (imageDataUrl: string) => {
-    console.log('Image uploaded:', imageDataUrl);
     setImage(imageDataUrl);
     setWines([]);
   };
@@ -26,14 +26,19 @@ export function WineAnalyzer() {
 
     setAnalyzing(true);
     try {
-      // This is where you'd call your AI service API
-      // For now, we'll use a placeholder response
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setWines([
-        { name: 'Chateau Margaux 2015', price: 650, value: 9.5 },
-        { name: 'Caymus Cabernet Sauvignon 2018', price: 90, value: 8.7 },
-        { name: 'La Crema Pinot Noir 2019', price: 25, value: 7.8 },
-      ]);
+      const result = await captureWines(image);
+      console.log('Analysis result:', result);
+
+      // Update wines state with the response
+      if (result.success && result.wines) {
+        setWines(result.wines);
+
+        /* setWines([
+          { name: 'Chateau Margaux 2015', price: 650, value: 9.5 },
+          { name: 'Caymus Cabernet Sauvignon 2018', price: 90, value: 8.7 },
+          { name: 'La Crema Pinot Noir 2019', price: 25, value: 7.8 },
+        ]);*/
+      }
     } catch (error) {
       console.error('Error analyzing image:', error);
     } finally {
