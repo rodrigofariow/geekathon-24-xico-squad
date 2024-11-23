@@ -113,11 +113,19 @@ export async function uploadUserImage({
 }> {
   const originalImage = img;
   // 1. Get wines list using sonnet, from the uploaded user image
+  const timeGuessStart = performance.now();
   const guessedWines = await getAllBottlesFromImage({
     base64: img.base64,
     fileExtension: img.ext,
     name: "original",
   });
+  const timeGuessEnd = performance.now();
+  console.log(
+    `Time to getAllBottlesFromImage took ${(
+      (timeGuessEnd - timeGuessStart) /
+      1000
+    ).toFixed(2)} seconds`
+  );
   // const guessedWines = [
   //   { name: "DAO", type: null, year: "2020", price: null },
   //   { name: "Dona Ermelinda", type: null, year: null, price: null },
@@ -129,6 +137,7 @@ export async function uploadUserImage({
   console.log("------------------------------");
   console.log("guessedWines", guessedWines);
   console.log("------------------------------");
+
   const parsedGuessedWines = parseGuessedWines(guessedWines);
 
   const vivinoCalls = parsedGuessedWines.map((wine) =>
@@ -249,7 +258,7 @@ export async function uploadUserImage({
               : (fileExtension as "jpeg" | "png"),
         };
       })
-      .filter((img): img is VivinoImgMeta => !!img);
+      .filter((img) => !!img);
     const otherImagesPresence = await getOtherImagesPresenceInOriginalImage({
       originalImage: {
         name: "original",
@@ -281,12 +290,19 @@ export async function uploadUserImage({
     });
   }
 
+  const startTime = performance.now();
   const promises: Promise<void>[] = [];
   for (const [wineName, wineHits] of hitsThatNeedAnthropicCheckingByWineName) {
     promises.push(processWine(wineName, wineHits));
   }
 
   await Promise.all(promises);
+  const endTime = performance.now();
+  console.log(
+    `Total time to processWines took ${((endTime - startTime) / 1000).toFixed(
+      2
+    )} seconds`
+  );
 
   // await Bun.write(`results_main.json`, JSON.stringify(vivinoResults, null, 2));
 

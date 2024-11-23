@@ -1,0 +1,226 @@
+[
+  {
+    "hits": [
+      {
+        "id": 1146296,
+        "name": "Tinto",
+        "seo_name": "tinto",
+        "description": "Intense garnet colour, a fine aroma of mature fruits and notes of vanilla with the woody hints not overwhelming the fruitiness. Tasting reveals a slight acidity and clear tannin.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/cCkpVyC8RBSWzvtU-X1wwg_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/cCkpVyC8RBSWzvtU-X1wwg_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/cCkpVyC8RBSWzvtU-X1wwg_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/cCkpVyC8RBSWzvtU-X1wwg_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Comenda Grande Tinto",
+            "seo_name": "comenda-grande-tinto-uv",
+            "statistics": {
+              "ratings_count": 5371,
+              "ratings_average": 3.9,
+              "labels_count": 909,
+              "reviews_count": 65
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Comenda Grande Tinto 2023",
+            "seo_name": "comenda-grande-tinto-2023",
+            "statistics": {
+              "ratings_count": 1,
+              "ratings_average": 0,
+              "labels_count": 3,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Comenda Grande Tinto 2022",
+            "seo_name": "comenda-grande-tinto-2022",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 5,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Comenda Grande Tinto 2021",
+            "seo_name": "comenda-grande-tinto-2021",
+            "statistics": {
+              "ratings_count": 52,
+              "ratings_average": 3.9,
+              "labels_count": 203,
+              "reviews_count": 10
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Comenda Grande Tinto 2020",
+            "seo_name": "comenda-grande-tinto-2020",
+            "statistics": {
+              "ratings_count": 19,
+              "ratings_average": 0,
+              "labels_count": 254,
+              "reviews_count": 3
+            }
+          }
+        ]
+      },
+      {
+        "id": 9512079,
+        "name": "Family Estate Tinto",
+        "seo_name": "family-estate-tinto",
+        "description": "",
+        "image": {
+          "location": "//images.vivino.com/labels/ulsyhQhxRxW7b5xhOgQazA.jpg",
+          "variations": {
+            "large": "//images.vivino.com/thumbs/ulsyhQhxRxW7b5xhOgQazA_375x500.jpg"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Comenda Grande Family Estate Tinto",
+            "seo_name": "comenda-grande-family-estate-tinto-uv",
+            "statistics": {
+              "ratings_count": 1678,
+              "ratings_average": 4.1,
+              "labels_count": 5,
+              "reviews_count": 11
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Comenda Grande Family Estate Tinto 2023",
+            "seo_name": "comenda-grande-family-estate-tinto-2023",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 2,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Comenda Grande Family Estate Tinto 2022",
+            "seo_name": "comenda-grande-family-estate-tinto-2022",
+            "statistics": {
+              "ratings_count": 3,
+              "ratings_average": 0,
+              "labels_count": 16,
+              "reviews_count": 1
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Comenda Grande Family Estate Tinto 2021",
+            "seo_name": "comenda-grande-family-estate-tinto-2021",
+            "statistics": {
+              "ratings_count": 79,
+              "ratings_average": 4,
+              "labels_count": 383,
+              "reviews_count": 18
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Comenda Grande Family Estate Tinto 2020",
+            "seo_name": "comenda-grande-family-estate-tinto-2020",
+            "statistics": {
+              "ratings_count": 41,
+              "ratings_average": 4.1,
+              "labels_count": 595,
+              "reviews_count": 11
+            }
+          }
+        ]
+      },
+      {
+        "id": 6802203,
+        "name": "Family Estate Touriga Nacional",
+        "seo_name": "family-estate-touriga-nacional",
+        "description": "",
+        "image": {
+          "location": "//images.vivino.com/thumbs/5FitHmUCTJ2pw2GvFcw9Og_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/5FitHmUCTJ2pw2GvFcw9Og_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/5FitHmUCTJ2pw2GvFcw9Og_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/5FitHmUCTJ2pw2GvFcw9Og_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Comenda Grande Family Estate Touriga Nacional",
+            "seo_name": "comenda-grande-family-estate-touriga-nacional-uv",
+            "statistics": {
+              "ratings_count": 908,
+              "ratings_average": 4,
+              "labels_count": 2,
+              "reviews_count": 4
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Comenda Grande Family Estate Touriga Nacional 2023",
+            "seo_name": "comenda-grande-family-estate-touriga-nacional-2023",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 0,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Comenda Grande Family Estate Touriga Nacional 2022",
+            "seo_name": "comenda-grande-family-estate-touriga-nacional-2022",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 4,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Comenda Grande Family Estate Touriga Nacional 2021",
+            "seo_name": "comenda-grande-family-estate-touriga-nacional-2021",
+            "statistics": {
+              "ratings_count": 4,
+              "ratings_average": 0,
+              "labels_count": 40,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Comenda Grande Family Estate Touriga Nacional 2020",
+            "seo_name": "comenda-grande-family-estate-touriga-nacional-2020",
+            "statistics": {
+              "ratings_count": 3,
+              "ratings_average": 0,
+              "labels_count": 53,
+              "reviews_count": 0
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
