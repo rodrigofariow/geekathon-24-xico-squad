@@ -8,10 +8,8 @@ const anthropic = new Anthropic({
 });
 
 async function sendImagesToClaude(
-  originalImagePath: string,
-  originalImageName: string,
-  potentialImagePaths: string[],
-  potentialImageNames: string[]
+  originalImageBase64: string,
+  potentialImages: VivinoImgMeta[]
 ) {
   const fileExtension = path.extname(originalImagePath).slice(1).toLowerCase();
 
@@ -25,7 +23,7 @@ async function sendImagesToClaude(
       const buffer = fs.readFileSync(imagePath);
       return {
         data: buffer.toString("base64"),
-        fileName: potentialImageNames[index],
+        fileName: potentialImages[index],
       };
     });
 
@@ -81,20 +79,17 @@ async function sendImagesToClaude(
   }
 }
 
-async function compare(originalImagePath, ...imagePaths) {
-  // Extract names from paths
-  const originalImageName = path.basename(originalImagePath);
-  const potentialImageNames = imagePaths.map((imagePath) =>
-    path.basename(imagePath)
-  );
+export type VivinoImgMeta = {
+  name: string;
+  base64: string;
+};
 
+export async function compare(
+  originalImageBase64: string,
+  otherImages: VivinoImgMeta[]
+) {
   // Use the sendImagesToClaude function
-  return await sendImagesToClaude(
-    originalImagePath,
-    originalImageName,
-    imagePaths,
-    potentialImageNames
-  );
+  return await sendImagesToClaude(originalImageBase64, otherImages);
 }
 
 // Example usage     const results = await compare("bottles.jpeg", "asdssi1.jpeg", "ermelindaQWERT.jpeg");
