@@ -1,26 +1,196 @@
 {
   "hits": [
     {
-      "id": 5708092,
-      "name": "Vinha da Valentina Premium",
+      "id": 1163903,
+      "name": "Rioja Reserva",
+      "description": "Intense black-cherry colour and hardly any signs of evolution. Expressive aromas on the nose with notes of liquorice, cinnamon, black pepper and fruit. On the palate, good backbone and lovely, polished tannins. Persistent finish.",
       "image": {
-        "location": "//images.vivino.com/thumbs/U7TFBlDmSR2iu4LdzhCtow_pl_480x640.png",
+        "location": "//images.vivino.com/thumbs/wkXrvG2sR8G8OHNBpvevbA_pl_480x640.png",
         "variations": {
-          "label": "//images.vivino.com/thumbs/U7TFBlDmSR2iu4LdzhCtow_pl_480x640.png",
-          "bottle_large": "//images.vivino.com/thumbs/U7TFBlDmSR2iu4LdzhCtow_pb_x960.png"
+          "label": "//images.vivino.com/thumbs/wkXrvG2sR8G8OHNBpvevbA_pl_480x640.png",
+          "bottle_large": "//images.vivino.com/thumbs/wkXrvG2sR8G8OHNBpvevbA_pb_x960.png"
         }
-      }
+      },
+      "vintages": [
+        {
+          "year": "U.V.",
+          "name": "Marqués de Riscal Rioja Reserva",
+          "statistics": {
+            "ratings_count": 235486,
+            "ratings_average": 4.1,
+            "labels_count": 4132,
+            "reviews_count": 2169
+          }
+        },
+        {
+          "year": "2023",
+          "name": "Marqués de Riscal Rioja Reserva 2023",
+          "statistics": {
+            "ratings_count": 39,
+            "ratings_average": 4.1,
+            "labels_count": 1616,
+            "reviews_count": 13
+          }
+        },
+        {
+          "year": "2022",
+          "name": "Marqués de Riscal Rioja Reserva 2022",
+          "statistics": {
+            "ratings_count": 93,
+            "ratings_average": 4,
+            "labels_count": 3134,
+            "reviews_count": 19
+          }
+        },
+        {
+          "year": "2021",
+          "name": "Marqués de Riscal Rioja Reserva 2021",
+          "statistics": {
+            "ratings_count": 178,
+            "ratings_average": 4,
+            "labels_count": 5061,
+            "reviews_count": 30
+          }
+        },
+        {
+          "year": "2020",
+          "name": "Marqués de Riscal Rioja Reserva 2020",
+          "statistics": {
+            "ratings_count": 721,
+            "ratings_average": 4.1,
+            "labels_count": 15090,
+            "reviews_count": 158
+          }
+        }
+      ]
     },
     {
-      "id": 1191946,
-      "name": "Dona Ermelinda Palmela Tinto",
+      "id": 1852661,
+      "name": "Arienzo Rioja Crianza",
+      "description": "A fresh, fruity wine with a lovely attack, bringing a reminder of red-berried fruit mingling with the coconut and vanilla aromas from the oak. Full and supple with a long finish. A wine with character which showcases the quality of the grapes used to make it.",
       "image": {
-        "location": "//images.vivino.com/thumbs/tmpQZHsjSBiayj1dgvRopg_pl_480x640.png",
+        "location": "//images.vivino.com/thumbs/ps9ovnJhTTOlYDuTh_M3LQ_pl_480x640.png",
         "variations": {
-          "label": "//images.vivino.com/thumbs/tmpQZHsjSBiayj1dgvRopg_pl_480x640.png",
-          "bottle_large": "//images.vivino.com/thumbs/tmpQZHsjSBiayj1dgvRopg_pb_x960.png"
+          "label": "//images.vivino.com/thumbs/ps9ovnJhTTOlYDuTh_M3LQ_pl_480x640.png",
+          "bottle_large": "//images.vivino.com/thumbs/ps9ovnJhTTOlYDuTh_M3LQ_pb_x960.png"
         }
-      }
+      },
+      "vintages": [
+        {
+          "year": "U.V.",
+          "name": "Marqués de Riscal Arienzo Rioja Crianza",
+          "statistics": {
+            "ratings_count": 26453,
+            "ratings_average": 3.6,
+            "labels_count": 2366,
+            "reviews_count": 352
+          }
+        },
+        {
+          "year": "2023",
+          "name": "Marqués de Riscal Arienzo Rioja Crianza 2023",
+          "statistics": {
+            "ratings_count": 8,
+            "ratings_average": 0,
+            "labels_count": 146,
+            "reviews_count": 2
+          }
+        },
+        {
+          "year": "2022",
+          "name": "Marqués de Riscal Arienzo Rioja Crianza 2022",
+          "statistics": {
+            "ratings_count": 11,
+            "ratings_average": 0,
+            "labels_count": 115,
+            "reviews_count": 4
+          }
+        },
+        {
+          "year": "2021",
+          "name": "Marqués de Riscal Arienzo Rioja Crianza 2021",
+          "statistics": {
+            "ratings_count": 6,
+            "ratings_average": 0,
+            "labels_count": 143,
+            "reviews_count": 3
+          }
+        },
+        {
+          "year": "2020",
+          "name": "Marqués de Riscal Arienzo Rioja Crianza 2020",
+          "statistics": {
+            "ratings_count": 20,
+            "ratings_average": 0,
+            "labels_count": 403,
+            "reviews_count": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 1582441,
+      "name": "Próximo Rioja",
+      "description": "Clean, intense dark cherry colour, with a violet hue. Nose young and open, with medium intensity. Aromas of strawberries and red cherries. Palate medium-bodied with a pleasant ripe fruit flavour and a slightly toasted finish.",
+      "image": {
+        "location": "//images.vivino.com/thumbs/loXojNzaTx2uyVl5qkwOYA_pl_480x640.png",
+        "variations": {
+          "label": "//images.vivino.com/thumbs/loXojNzaTx2uyVl5qkwOYA_pl_480x640.png",
+          "bottle_large": "//images.vivino.com/thumbs/loXojNzaTx2uyVl5qkwOYA_pb_x960.png"
+        }
+      },
+      "vintages": [
+        {
+          "year": "U.V.",
+          "name": "Marqués de Riscal Próximo Rioja",
+          "statistics": {
+            "ratings_count": 17955,
+            "ratings_average": 3.7,
+            "labels_count": 208,
+            "reviews_count": 151
+          }
+        },
+        {
+          "year": "2023",
+          "name": "Marqués de Riscal Próximo Rioja 2023",
+          "statistics": {
+            "ratings_count": 3,
+            "ratings_average": 0,
+            "labels_count": 53,
+            "reviews_count": 0
+          }
+        },
+        {
+          "year": "2022",
+          "name": "Marqués de Riscal Próximo Rioja 2022",
+          "statistics": {
+            "ratings_count": 1,
+            "ratings_average": 0,
+            "labels_count": 90,
+            "reviews_count": 0
+          }
+        },
+        {
+          "year": "2021",
+          "name": "Marqués de Riscal Próximo Rioja 2021",
+          "statistics": {
+            "ratings_count": 3,
+            "ratings_average": 0,
+            "labels_count": 191,
+            "reviews_count": 1
+          }
+        },
+        {
+          "year": "2020",
+          "name": "Marqués de Riscal Próximo Rioja 2020",
+          "statistics": {
+            "ratings_count": 27,
+            "ratings_average": 3.7,
+            "labels_count": 893,
+            "reviews_count": 8
+          }
+        }
+      ]
     }
   ]
 }

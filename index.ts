@@ -5,6 +5,8 @@ const resSchema = z.object({
     z.object({
       id: z.number(),
       name: z.string(),
+      // e.g "A fresh, fruity wine with a lovely attack, bringing a reminder of red-berried fruit mingling with the coconut and vanilla aromas from the oak. Full and supple with a long finish. A wine with character which showcases the quality of the grapes used to make it.",
+      description: z.string(),
       image: z.object({
         location: z.string(),
         variations: z.object({
@@ -12,11 +14,26 @@ const resSchema = z.object({
           bottle_large: z.string(),
         }),
       }),
+      vintages: z
+        .array(
+          z.object({
+            year: z.string(),
+            name: z.string(),
+            statistics: z.object({
+              // "status": "Normal",
+              ratings_count: z.number(),
+              ratings_average: z.number(),
+              labels_count: z.number(),
+              reviews_count: z.number(),
+            }),
+          })
+        )
+        .transform((arr) =>
+          arr.sort((a, b) => Number(b.year) - Number(a.year)).slice(0, 5)
+        ),
     })
   ),
 });
-
-type ResSchema = z.infer<typeof resSchema>;
 
 interface SearchParams {
   query: string;
@@ -86,8 +103,8 @@ const searchExample = async () => {
     // Advanced search with filters
     await searchWines({
       // query: ' Dona ERMELINDA (Palmela) 2021',
-      query: "ERMELINDA",
-      hitsPerPage: 2,
+      query: "Riscal Rioja",
+      hitsPerPage: 3,
       // attributesToRetrieve: ['name'],
       // filters: 'country:Portugal',
     });
