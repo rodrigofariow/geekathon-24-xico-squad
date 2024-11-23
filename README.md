@@ -1,7 +1,1 @@
-# geekathon-24-xico-squad
-
-```
-bun index.ts
-```
-
-
+This is a starter template for [Learn Next.js](https://nextjs.org/learn).
