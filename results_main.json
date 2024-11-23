@@ -1,0 +1,1280 @@
+[
+  {
+    "hits": [
+      {
+        "id": 1146296,
+        "name": "Tinto",
+        "seo_name": "tinto",
+        "description": "Intense garnet colour, a fine aroma of mature fruits and notes of vanilla with the woody hints not overwhelming the fruitiness. Tasting reveals a slight acidity and clear tannin.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/cCkpVyC8RBSWzvtU-X1wwg_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/cCkpVyC8RBSWzvtU-X1wwg_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/cCkpVyC8RBSWzvtU-X1wwg_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/cCkpVyC8RBSWzvtU-X1wwg_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Comenda Grande Tinto",
+            "seo_name": "comenda-grande-tinto-uv",
+            "statistics": {
+              "ratings_count": 5371,
+              "ratings_average": 3.9,
+              "labels_count": 909,
+              "reviews_count": 65
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Comenda Grande Tinto 2023",
+            "seo_name": "comenda-grande-tinto-2023",
+            "statistics": {
+              "ratings_count": 1,
+              "ratings_average": 0,
+              "labels_count": 3,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Comenda Grande Tinto 2022",
+            "seo_name": "comenda-grande-tinto-2022",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 5,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Comenda Grande Tinto 2021",
+            "seo_name": "comenda-grande-tinto-2021",
+            "statistics": {
+              "ratings_count": 52,
+              "ratings_average": 3.9,
+              "labels_count": 203,
+              "reviews_count": 10
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Comenda Grande Tinto 2020",
+            "seo_name": "comenda-grande-tinto-2020",
+            "statistics": {
+              "ratings_count": 19,
+              "ratings_average": 0,
+              "labels_count": 254,
+              "reviews_count": 3
+            }
+          }
+        ]
+      },
+      {
+        "id": 9512079,
+        "name": "Family Estate Tinto",
+        "seo_name": "family-estate-tinto",
+        "description": "",
+        "image": {
+          "location": "//images.vivino.com/labels/ulsyhQhxRxW7b5xhOgQazA.jpg",
+          "variations": {
+            "large": "//images.vivino.com/thumbs/ulsyhQhxRxW7b5xhOgQazA_375x500.jpg"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Comenda Grande Family Estate Tinto",
+            "seo_name": "comenda-grande-family-estate-tinto-uv",
+            "statistics": {
+              "ratings_count": 1678,
+              "ratings_average": 4.1,
+              "labels_count": 5,
+              "reviews_count": 11
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Comenda Grande Family Estate Tinto 2023",
+            "seo_name": "comenda-grande-family-estate-tinto-2023",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 2,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Comenda Grande Family Estate Tinto 2022",
+            "seo_name": "comenda-grande-family-estate-tinto-2022",
+            "statistics": {
+              "ratings_count": 3,
+              "ratings_average": 0,
+              "labels_count": 16,
+              "reviews_count": 1
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Comenda Grande Family Estate Tinto 2021",
+            "seo_name": "comenda-grande-family-estate-tinto-2021",
+            "statistics": {
+              "ratings_count": 79,
+              "ratings_average": 4,
+              "labels_count": 383,
+              "reviews_count": 18
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Comenda Grande Family Estate Tinto 2020",
+            "seo_name": "comenda-grande-family-estate-tinto-2020",
+            "statistics": {
+              "ratings_count": 41,
+              "ratings_average": 4.1,
+              "labels_count": 595,
+              "reviews_count": 11
+            }
+          }
+        ]
+      },
+      {
+        "id": 6802203,
+        "name": "Family Estate Touriga Nacional",
+        "seo_name": "family-estate-touriga-nacional",
+        "description": "",
+        "image": {
+          "location": "//images.vivino.com/thumbs/5FitHmUCTJ2pw2GvFcw9Og_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/5FitHmUCTJ2pw2GvFcw9Og_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/5FitHmUCTJ2pw2GvFcw9Og_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/5FitHmUCTJ2pw2GvFcw9Og_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Comenda Grande Family Estate Touriga Nacional",
+            "seo_name": "comenda-grande-family-estate-touriga-nacional-uv",
+            "statistics": {
+              "ratings_count": 908,
+              "ratings_average": 4,
+              "labels_count": 2,
+              "reviews_count": 4
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Comenda Grande Family Estate Touriga Nacional 2023",
+            "seo_name": "comenda-grande-family-estate-touriga-nacional-2023",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 0,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Comenda Grande Family Estate Touriga Nacional 2022",
+            "seo_name": "comenda-grande-family-estate-touriga-nacional-2022",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 4,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Comenda Grande Family Estate Touriga Nacional 2021",
+            "seo_name": "comenda-grande-family-estate-touriga-nacional-2021",
+            "statistics": {
+              "ratings_count": 4,
+              "ratings_average": 0,
+              "labels_count": 40,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Comenda Grande Family Estate Touriga Nacional 2020",
+            "seo_name": "comenda-grande-family-estate-touriga-nacional-2020",
+            "statistics": {
+              "ratings_count": 3,
+              "ratings_average": 0,
+              "labels_count": 53,
+              "reviews_count": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "hits": [
+      {
+        "id": 1216997,
+        "name": "Tinto",
+        "seo_name": "tinto",
+        "description": "Nose with notes of cherry, paprika and pepper, complemented by chocolate hints. Engaging and smooth mouth feel with full body where we can find mineral notes along with hints of fruit and chocolate that linger in the long after taste.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/O19JxAtzQH6qvBS0QT8GZw_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/O19JxAtzQH6qvBS0QT8GZw_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/O19JxAtzQH6qvBS0QT8GZw_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/O19JxAtzQH6qvBS0QT8GZw_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Conventual Reserva Tinto",
+            "seo_name": "conventual-reserva-tinto-uv",
+            "statistics": {
+              "ratings_count": 2857,
+              "ratings_average": 3.8,
+              "labels_count": 112,
+              "reviews_count": 25
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Conventual Reserva Tinto 2023",
+            "seo_name": "conventual-reserva-tinto-2023",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 0,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Conventual Reserva Tinto 2022",
+            "seo_name": "conventual-reserva-tinto-2022",
+            "statistics": {
+              "ratings_count": 1,
+              "ratings_average": 0,
+              "labels_count": 20,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Conventual Reserva Tinto 2021",
+            "seo_name": "conventual-reserva-tinto-2021",
+            "statistics": {
+              "ratings_count": 71,
+              "ratings_average": 4,
+              "labels_count": 1654,
+              "reviews_count": 10
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Conventual Reserva Tinto 2020",
+            "seo_name": "conventual-reserva-tinto-2020",
+            "statistics": {
+              "ratings_count": 272,
+              "ratings_average": 3.9,
+              "labels_count": 7828,
+              "reviews_count": 46
+            }
+          }
+        ]
+      },
+      {
+        "id": 7856468,
+        "name": "Branco",
+        "seo_name": "branco",
+        "description": "Nose with citrus fruits, dominated by tangerine and lime, mineral notes, spices and fine hints of beeswax and brioche. Mouth of a voluminous and succulent character but with freshness and tension in a long after taste.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/-qqgJY9mSHW6ppFYBsMRvA_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/-qqgJY9mSHW6ppFYBsMRvA_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/-qqgJY9mSHW6ppFYBsMRvA_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/-qqgJY9mSHW6ppFYBsMRvA_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Conventual Reserva Branco",
+            "seo_name": "conventual-reserva-branco-uv",
+            "statistics": {
+              "ratings_count": 165,
+              "ratings_average": 4.1,
+              "labels_count": 4,
+              "reviews_count": 7
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Conventual Reserva Branco 2022",
+            "seo_name": "conventual-reserva-branco-2022",
+            "statistics": {
+              "ratings_count": 3,
+              "ratings_average": 0,
+              "labels_count": 24,
+              "reviews_count": 1
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Conventual Reserva Branco 2021",
+            "seo_name": "conventual-reserva-branco-2021",
+            "statistics": {
+              "ratings_count": 8,
+              "ratings_average": 0,
+              "labels_count": 113,
+              "reviews_count": 2
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Conventual Reserva Branco 2020",
+            "seo_name": "conventual-reserva-branco-2020",
+            "statistics": {
+              "ratings_count": 1,
+              "ratings_average": 0,
+              "labels_count": 33,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2019",
+            "name": "Conventual Reserva Branco 2019",
+            "seo_name": "conventual-reserva-branco-2019",
+            "statistics": {
+              "ratings_count": 9,
+              "ratings_average": 0,
+              "labels_count": 124,
+              "reviews_count": 3
+            }
+          }
+        ]
+      },
+      {
+        "id": 8497064,
+        "name": "Vinha da Serra da Penha",
+        "seo_name": "vinha-da-serra-da-penha",
+        "description": "Elegant and fragrant nose with notes of cassis, red pepper and cocoa. Fine vegetable hints to give freshness. Fresh and full-bodied mouth with firm but fine tannins.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/gxfLF4QKR9CQ2R-LJq_w-A_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/gxfLF4QKR9CQ2R-LJq_w-A_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/gxfLF4QKR9CQ2R-LJq_w-A_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/gxfLF4QKR9CQ2R-LJq_w-A_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Conventual Reserva Vinha da Serra da Penha",
+            "seo_name": "conventual-reserva-vinha-da-serra-da-penha-uv",
+            "statistics": {
+              "ratings_count": 33,
+              "ratings_average": 3.8,
+              "labels_count": 0,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Conventual Reserva Vinha da Serra da Penha 2022",
+            "seo_name": "conventual-reserva-vinha-da-serra-da-penha-2022",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 0,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Conventual Reserva Vinha da Serra da Penha 2021",
+            "seo_name": "conventual-reserva-vinha-da-serra-da-penha-2021",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 0,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Conventual Reserva Vinha da Serra da Penha 2020",
+            "seo_name": "conventual-reserva-vinha-da-serra-da-penha-2020",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 0,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2019",
+            "name": "Conventual Reserva Vinha da Serra da Penha 2019",
+            "seo_name": "conventual-reserva-vinha-da-serra-da-penha-2019",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 0,
+              "reviews_count": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "hits": [
+      {
+        "id": 1935409,
+        "name": "Vila Santa Tinto",
+        "seo_name": "vila-santa-tinto",
+        "description": "It has ripe fruit flavours with hints of cherry and plum and a faint spiciness. A big red with good structure; in the mouth, the tannins are gentçy wrapped in the body of the wine.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/ZOXcqn2vSVaHyyo8r2ZfrQ_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/ZOXcqn2vSVaHyyo8r2ZfrQ_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/ZOXcqn2vSVaHyyo8r2ZfrQ_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/ZOXcqn2vSVaHyyo8r2ZfrQ_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Joao Portugal Ramos Vila Santa Tinto",
+            "seo_name": "j-portugal-ramos-vinhos-sa-vila-santa-tinto-uv",
+            "statistics": {
+              "ratings_count": 1005,
+              "ratings_average": 3.7,
+              "labels_count": 98,
+              "reviews_count": 12
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Joao Portugal Ramos Vila Santa Tinto 2023",
+            "seo_name": "j-portugal-ramos-vinhos-sa-vila-santa-tinto-2023",
+            "statistics": {
+              "ratings_count": 4,
+              "ratings_average": 0,
+              "labels_count": 173,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Joao Portugal Ramos Vila Santa Tinto 2022",
+            "seo_name": "j-portugal-ramos-vinhos-sa-vila-santa-tinto-2022",
+            "statistics": {
+              "ratings_count": 19,
+              "ratings_average": 0,
+              "labels_count": 792,
+              "reviews_count": 2
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Joao Portugal Ramos Vila Santa Tinto 2021",
+            "seo_name": "j-portugal-ramos-vinhos-sa-vila-santa-tinto-2021",
+            "statistics": {
+              "ratings_count": 71,
+              "ratings_average": 3.6,
+              "labels_count": 2427,
+              "reviews_count": 16
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Joao Portugal Ramos Vila Santa Tinto 2020",
+            "seo_name": "j-portugal-ramos-vinhos-sa-vila-santa-tinto-2020",
+            "statistics": {
+              "ratings_count": 61,
+              "ratings_average": 3.8,
+              "labels_count": 2223,
+              "reviews_count": 11
+            }
+          }
+        ]
+      },
+      {
+        "id": 12667560,
+        "name": "Vila Santa Reserva Tinto",
+        "seo_name": "vila-santa-reserva-tinto-alentejano",
+        "description": "",
+        "image": {
+          "location": "//images.vivino.com/labels/e5oWLUgtQwOkPfv4TM-DKw.jpg",
+          "variations": {
+            "large": "//images.vivino.com/thumbs/e5oWLUgtQwOkPfv4TM-DKw_375x500.jpg"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Joao Portugal Ramos Vila Santa Reserva Tinto",
+            "seo_name": "j-portugal-ramos-vinhos-sa-vila-santa-reserva-tinto-alentejano-uv",
+            "statistics": {
+              "ratings_count": 18,
+              "ratings_average": 0,
+              "labels_count": 0,
+              "reviews_count": 1
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Joao Portugal Ramos Vila Santa Reserva Tinto 2023",
+            "seo_name": "j-portugal-ramos-vinhos-sa-vila-santa-reserva-tinto-alentejano-2023",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 1,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Joao Portugal Ramos Vila Santa Reserva Tinto 2022",
+            "seo_name": "j-portugal-ramos-vinhos-sa-vila-santa-reserva-tinto-alentejano-2022",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 1,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Joao Portugal Ramos Vila Santa Reserva Tinto 2021",
+            "seo_name": "j-portugal-ramos-vinhos-sa-vila-santa-reserva-tinto-alentejano-2021",
+            "statistics": {
+              "ratings_count": 6,
+              "ratings_average": 0,
+              "labels_count": 12,
+              "reviews_count": 2
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Joao Portugal Ramos Vila Santa Reserva Tinto 2020",
+            "seo_name": "j-portugal-ramos-vinhos-sa-vila-santa-reserva-tinto-alentejano-2020",
+            "statistics": {
+              "ratings_count": 2,
+              "ratings_average": 0,
+              "labels_count": 7,
+              "reviews_count": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "hits": [
+      {
+        "id": 10723430,
+        "name": "Grande Escolha Tinto",
+        "seo_name": "grande-escolha-tinto",
+        "description": "Aragonez, Syrah & Alicante Bouschet",
+        "image": {
+          "location": "//images.vivino.com/thumbs/4P1Ns-BqQ5GqI32KSDU2SA_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/4P1Ns-BqQ5GqI32KSDU2SA_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/4P1Ns-BqQ5GqI32KSDU2SA_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/4P1Ns-BqQ5GqI32KSDU2SA_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Vinha Marinês Grande Escolha Tinto",
+            "seo_name": "vinha-marines-grande-escolha-tinto-uv",
+            "statistics": {
+              "ratings_count": 660,
+              "ratings_average": 3.9,
+              "labels_count": 372,
+              "reviews_count": 5
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Vinha Marinês Grande Escolha Tinto 2023",
+            "seo_name": "vinha-marines-grande-escolha-tinto-2023",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 3,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Vinha Marinês Grande Escolha Tinto 2022",
+            "seo_name": "vinha-marines-grande-escolha-tinto-2022",
+            "statistics": {
+              "ratings_count": 4,
+              "ratings_average": 0,
+              "labels_count": 464,
+              "reviews_count": 1
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Vinha Marinês Grande Escolha Tinto 2021",
+            "seo_name": "vinha-marines-grande-escolha-tinto-2021",
+            "statistics": {
+              "ratings_count": 592,
+              "ratings_average": 3.8,
+              "labels_count": 19078,
+              "reviews_count": 113
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Vinha Marinês Grande Escolha Tinto 2020",
+            "seo_name": "vinha-marines-grande-escolha-tinto-2020",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 7,
+              "reviews_count": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": 11445090,
+        "name": "Grande Escolha Branco",
+        "seo_name": "grande-escolha-branco",
+        "description": "",
+        "image": {
+          "location": "//images.vivino.com/thumbs/QD2C1Q8fSO-1XHbLauLq8A_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/QD2C1Q8fSO-1XHbLauLq8A_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/QD2C1Q8fSO-1XHbLauLq8A_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/QD2C1Q8fSO-1XHbLauLq8A_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Vinha Marinês Grande Escolha Branco",
+            "seo_name": "vinha-marines-grande-escolha-branco-uv",
+            "statistics": {
+              "ratings_count": 379,
+              "ratings_average": 4,
+              "labels_count": 22,
+              "reviews_count": 2
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Vinha Marinês Grande Escolha Branco 2023",
+            "seo_name": "vinha-marines-grande-escolha-branco-2023",
+            "statistics": {
+              "ratings_count": 65,
+              "ratings_average": 4.1,
+              "labels_count": 1300,
+              "reviews_count": 12
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Vinha Marinês Grande Escolha Branco 2022",
+            "seo_name": "vinha-marines-grande-escolha-branco-2022",
+            "statistics": {
+              "ratings_count": 285,
+              "ratings_average": 4,
+              "labels_count": 4828,
+              "reviews_count": 53
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Vinha Marinês Grande Escolha Branco 2021",
+            "seo_name": "vinha-marines-grande-escolha-branco-2021",
+            "statistics": {
+              "ratings_count": 6,
+              "ratings_average": 0,
+              "labels_count": 251,
+              "reviews_count": 1
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Vinha Marinês Grande Escolha Branco 2020",
+            "seo_name": "vinha-marines-grande-escolha-branco-2020",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 7,
+              "reviews_count": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": 11769201,
+        "name": "Grande Escolha Rosé",
+        "seo_name": "grande-escolha-rose-alentejano",
+        "description": "",
+        "image": {
+          "location": "//images.vivino.com/thumbs/w0ZjRRDTSOK_tznSLpta5w_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/w0ZjRRDTSOK_tznSLpta5w_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/w0ZjRRDTSOK_tznSLpta5w_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/w0ZjRRDTSOK_tznSLpta5w_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Vinha Marinês Grande Escolha Rosé",
+            "seo_name": "vinha-marines-grande-escolha-rose-alentejano-uv",
+            "statistics": {
+              "ratings_count": 71,
+              "ratings_average": 3.8,
+              "labels_count": 1,
+              "reviews_count": 1
+            }
+          },
+          {
+            "year": "2024",
+            "name": "Vinha Marinês Grande Escolha Rosé 2024",
+            "seo_name": "vinha-marines-grande-escolha-rose-alentejano-2024",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 0,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Vinha Marinês Grande Escolha Rosé 2023",
+            "seo_name": "vinha-marines-grande-escolha-rose-alentejano-2023",
+            "statistics": {
+              "ratings_count": 0,
+              "ratings_average": 0,
+              "labels_count": 0,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Vinha Marinês Grande Escolha Rosé 2022",
+            "seo_name": "vinha-marines-grande-escolha-rose-alentejano-2022",
+            "statistics": {
+              "ratings_count": 60,
+              "ratings_average": 3.8,
+              "labels_count": 1202,
+              "reviews_count": 17
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Vinha Marinês Grande Escolha Rosé 2021",
+            "seo_name": "vinha-marines-grande-escolha-rose-alentejano-2021",
+            "statistics": {
+              "ratings_count": 6,
+              "ratings_average": 0,
+              "labels_count": 435,
+              "reviews_count": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "hits": [
+      {
+        "id": 90059,
+        "name": "Dom Martinho Tinto",
+        "seo_name": "dom-martinho-tinto",
+        "description": "",
+        "image": {
+          "location": "//images.vivino.com/thumbs/OUBc0mcgS7eKLIYlAg0gIw_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/OUBc0mcgS7eKLIYlAg0gIw_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/OUBc0mcgS7eKLIYlAg0gIw_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/OUBc0mcgS7eKLIYlAg0gIw_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Quinta do Carmo Dom Martinho Tinto",
+            "seo_name": "quinta-do-carmo-dom-martinho-tinto-uv",
+            "statistics": {
+              "ratings_count": 17038,
+              "ratings_average": 3.7,
+              "labels_count": 179,
+              "reviews_count": 100
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Quinta do Carmo Dom Martinho Tinto 2023",
+            "seo_name": "quinta-do-carmo-dom-martinho-tinto-2023",
+            "statistics": {
+              "ratings_count": 12,
+              "ratings_average": 0,
+              "labels_count": 484,
+              "reviews_count": 2
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Quinta do Carmo Dom Martinho Tinto 2022",
+            "seo_name": "quinta-do-carmo-dom-martinho-tinto-2022",
+            "statistics": {
+              "ratings_count": 44,
+              "ratings_average": 3.7,
+              "labels_count": 1822,
+              "reviews_count": 8
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Quinta do Carmo Dom Martinho Tinto 2021",
+            "seo_name": "quinta-do-carmo-dom-martinho-tinto-2021",
+            "statistics": {
+              "ratings_count": 278,
+              "ratings_average": 3.8,
+              "labels_count": 7167,
+              "reviews_count": 61
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Quinta do Carmo Dom Martinho Tinto 2020",
+            "seo_name": "quinta-do-carmo-dom-martinho-tinto-2020",
+            "statistics": {
+              "ratings_count": 539,
+              "ratings_average": 3.8,
+              "labels_count": 11630,
+              "reviews_count": 108
+            }
+          }
+        ]
+      },
+      {
+        "id": 1274033,
+        "name": "Douro Tinto (Colheita Unoaked)",
+        "seo_name": "douro-tinto-colheita-unoaked",
+        "description": "A rubi red wine with blue notes, fresh and intense aroma (black and blueberries) and mineral. Intense flavor, fresh, great balance between fruit, alcohol and dense structure, beautiful concentration,shinny texture, sophisticated and complex. It ends long, full and rich.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/UFw_IRh1QTudXDZ2R5RB-A_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/UFw_IRh1QTudXDZ2R5RB-A_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/UFw_IRh1QTudXDZ2R5RB-A_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/UFw_IRh1QTudXDZ2R5RB-A_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Quinta Nova de Nossa Senhora do Carmo Douro Tinto (Colheita Unoaked)",
+            "seo_name": "quinta-nova-de-nossa-senhora-do-carmo-douro-tinto-colheita-unoaked-uv",
+            "statistics": {
+              "ratings_count": 17835,
+              "ratings_average": 4.1,
+              "labels_count": 306,
+              "reviews_count": 150
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Quinta Nova de Nossa Senhora do Carmo Douro Tinto (Colheita Unoaked) 2023",
+            "seo_name": "quinta-nova-de-nossa-senhora-do-carmo-douro-tinto-colheita-unoaked-2023",
+            "statistics": {
+              "ratings_count": 3,
+              "ratings_average": 0,
+              "labels_count": 34,
+              "reviews_count": 0
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Quinta Nova de Nossa Senhora do Carmo Douro Tinto (Colheita Unoaked) 2022",
+            "seo_name": "quinta-nova-de-nossa-senhora-do-carmo-douro-tinto-colheita-unoaked-2022",
+            "statistics": {
+              "ratings_count": 823,
+              "ratings_average": 4.2,
+              "labels_count": 10724,
+              "reviews_count": 153
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Quinta Nova de Nossa Senhora do Carmo Douro Tinto (Colheita Unoaked) 2021",
+            "seo_name": "quinta-nova-de-nossa-senhora-do-carmo-douro-tinto-colheita-unoaked-2021",
+            "statistics": {
+              "ratings_count": 1625,
+              "ratings_average": 4.2,
+              "labels_count": 17623,
+              "reviews_count": 280
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Quinta Nova de Nossa Senhora do Carmo Douro Tinto (Colheita Unoaked) 2020",
+            "seo_name": "quinta-nova-de-nossa-senhora-do-carmo-douro-tinto-colheita-unoaked-2020",
+            "statistics": {
+              "ratings_count": 2156,
+              "ratings_average": 4.2,
+              "labels_count": 20721,
+              "reviews_count": 459
+            }
+          }
+        ]
+      },
+      {
+        "id": 1269166,
+        "name": "Grainha Reserva",
+        "seo_name": "grainha-reserva",
+        "description": "It has voluminous wine with an elevated and complex aroma. The new toasted barrel complements the fine, ripe fruit. It presents a satiny body and a rich texture with a long and persistent finish.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/7hVBEDbgRV2U6kjmn7jyvA_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/7hVBEDbgRV2U6kjmn7jyvA_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/7hVBEDbgRV2U6kjmn7jyvA_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/7hVBEDbgRV2U6kjmn7jyvA_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Quinta Nova de Nossa Senhora do Carmo Grainha Reserva",
+            "seo_name": "quinta-nova-de-nossa-senhora-do-carmo-grainha-reserva-uv",
+            "statistics": {
+              "ratings_count": 14077,
+              "ratings_average": 4.1,
+              "labels_count": 413,
+              "reviews_count": 145
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Quinta Nova de Nossa Senhora do Carmo Grainha Reserva 2023",
+            "seo_name": "quinta-nova-de-nossa-senhora-do-carmo-grainha-reserva-2023",
+            "statistics": {
+              "ratings_count": 48,
+              "ratings_average": 4.2,
+              "labels_count": 425,
+              "reviews_count": 8
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Quinta Nova de Nossa Senhora do Carmo Grainha Reserva 2022",
+            "seo_name": "quinta-nova-de-nossa-senhora-do-carmo-grainha-reserva-2022",
+            "statistics": {
+              "ratings_count": 313,
+              "ratings_average": 4.2,
+              "labels_count": 3000,
+              "reviews_count": 60
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Quinta Nova de Nossa Senhora do Carmo Grainha Reserva 2021",
+            "seo_name": "quinta-nova-de-nossa-senhora-do-carmo-grainha-reserva-2021",
+            "statistics": {
+              "ratings_count": 1618,
+              "ratings_average": 4.2,
+              "labels_count": 15123,
+              "reviews_count": 265
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Quinta Nova de Nossa Senhora do Carmo Grainha Reserva 2020",
+            "seo_name": "quinta-nova-de-nossa-senhora-do-carmo-grainha-reserva-2020",
+            "statistics": {
+              "ratings_count": 1131,
+              "ratings_average": 4.2,
+              "labels_count": 10364,
+              "reviews_count": 216
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "hits": [
+      {
+        "id": 1105372,
+        "name": "Monte Velho Tinto",
+        "seo_name": "monte-velho-tinto",
+        "description": "Clear, deep ruby colour.  Ripe berry fruits with some underlying oak complexity.  Good depth of ripe fruit with a soft tannic structure.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/I-o5WVEPSZqg6yoeANwv_w_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/I-o5WVEPSZqg6yoeANwv_w_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/I-o5WVEPSZqg6yoeANwv_w_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/I-o5WVEPSZqg6yoeANwv_w_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Esporão Monte Velho Tinto",
+            "seo_name": "esporao-monte-velho-tinto-uv",
+            "statistics": {
+              "ratings_count": 74372,
+              "ratings_average": 3.6,
+              "labels_count": 9325,
+              "reviews_count": 953
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Esporão Monte Velho Tinto 2023",
+            "seo_name": "esporao-monte-velho-tinto-2023",
+            "statistics": {
+              "ratings_count": 298,
+              "ratings_average": 3.7,
+              "labels_count": 8379,
+              "reviews_count": 67
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Esporão Monte Velho Tinto 2022",
+            "seo_name": "esporao-monte-velho-tinto-2022",
+            "statistics": {
+              "ratings_count": 2061,
+              "ratings_average": 3.7,
+              "labels_count": 42991,
+              "reviews_count": 426
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Esporão Monte Velho Tinto 2021",
+            "seo_name": "esporao-monte-velho-tinto-2021",
+            "statistics": {
+              "ratings_count": 4060,
+              "ratings_average": 3.8,
+              "labels_count": 71491,
+              "reviews_count": 855
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Esporão Monte Velho Tinto 2020",
+            "seo_name": "esporao-monte-velho-tinto-2020",
+            "statistics": {
+              "ratings_count": 3857,
+              "ratings_average": 3.7,
+              "labels_count": 54419,
+              "reviews_count": 1015
+            }
+          }
+        ]
+      },
+      {
+        "id": 1105366,
+        "name": "Esporão Reserva Tinto",
+        "seo_name": "esporao-reserva-tinto",
+        "description": "Deep, dark red, opaque. Spicy red berry fruits with subtle oak complexity. Full bodied, textured palate, well structured tannins. Solid and dense with great potential for bottle maturation.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/OU3Ay4z4SMiEu_Bj7sbFtA_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/OU3Ay4z4SMiEu_Bj7sbFtA_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/OU3Ay4z4SMiEu_Bj7sbFtA_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/OU3Ay4z4SMiEu_Bj7sbFtA_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Esporão Esporão Reserva Tinto",
+            "seo_name": "esporao-esporao-reserva-tinto-uv",
+            "statistics": {
+              "ratings_count": 82579,
+              "ratings_average": 4.1,
+              "labels_count": 3183,
+              "reviews_count": 451
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Esporão Esporão Reserva Tinto 2023",
+            "seo_name": "esporao-esporao-reserva-tinto-2023",
+            "statistics": {
+              "ratings_count": 80,
+              "ratings_average": 4.1,
+              "labels_count": 1785,
+              "reviews_count": 19
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Esporão Esporão Reserva Tinto 2022",
+            "seo_name": "esporao-esporao-reserva-tinto-2022",
+            "statistics": {
+              "ratings_count": 493,
+              "ratings_average": 4.2,
+              "labels_count": 9933,
+              "reviews_count": 98
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Esporão Esporão Reserva Tinto 2021",
+            "seo_name": "esporao-esporao-reserva-tinto-2021",
+            "statistics": {
+              "ratings_count": 2382,
+              "ratings_average": 4.2,
+              "labels_count": 30989,
+              "reviews_count": 543
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Esporão Esporão Reserva Tinto 2020",
+            "seo_name": "esporao-esporao-reserva-tinto-2020",
+            "statistics": {
+              "ratings_count": 3926,
+              "ratings_average": 4.2,
+              "labels_count": 39968,
+              "reviews_count": 882
+            }
+          }
+        ]
+      },
+      {
+        "id": 1493141,
+        "name": "Assobio Douro",
+        "seo_name": "assobio-douro",
+        "description": "Assobio comes from vineyards such as these, from plots boasting unique characteristics and planted at higher altitudes. The wine shows a red color with violet tones. Fresh and intense with dominant red fruit. Well-integrated tannins and good acidity provide a long, elegant and fresh finish.",
+        "image": {
+          "location": "//images.vivino.com/thumbs/XqRY731DSuWUthCD47ww_w_pl_480x640.png",
+          "variations": {
+            "label": "//images.vivino.com/thumbs/XqRY731DSuWUthCD47ww_w_pl_480x640.png",
+            "bottle_large": "//images.vivino.com/thumbs/XqRY731DSuWUthCD47ww_w_pb_x960.png",
+            "large": "//images.vivino.com/thumbs/XqRY731DSuWUthCD47ww_w_pl_375x500.png"
+          }
+        },
+        "region": {
+          "country": "pt"
+        },
+        "vintages": [
+          {
+            "year": "U.V.",
+            "name": "Esporão Assobio Douro",
+            "seo_name": "esporao-assobio-douro-uv",
+            "statistics": {
+              "ratings_count": 28340,
+              "ratings_average": 3.7,
+              "labels_count": 946,
+              "reviews_count": 265
+            }
+          },
+          {
+            "year": "2023",
+            "name": "Esporão Assobio Douro 2023",
+            "seo_name": "esporao-assobio-douro-2023",
+            "statistics": {
+              "ratings_count": 46,
+              "ratings_average": 3.7,
+              "labels_count": 1313,
+              "reviews_count": 7
+            }
+          },
+          {
+            "year": "2022",
+            "name": "Esporão Assobio Douro 2022",
+            "seo_name": "esporao-assobio-douro-2022",
+            "statistics": {
+              "ratings_count": 331,
+              "ratings_average": 3.8,
+              "labels_count": 9544,
+              "reviews_count": 67
+            }
+          },
+          {
+            "year": "2021",
+            "name": "Esporão Assobio Douro 2021",
+            "seo_name": "esporao-assobio-douro-2021",
+            "statistics": {
+              "ratings_count": 985,
+              "ratings_average": 3.8,
+              "labels_count": 22564,
+              "reviews_count": 180
+            }
+          },
+          {
+            "year": "2020",
+            "name": "Esporão Assobio Douro 2020",
+            "seo_name": "esporao-assobio-douro-2020",
+            "statistics": {
+              "ratings_count": 1330,
+              "ratings_average": 3.8,
+              "labels_count": 23703,
+              "reviews_count": 262
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

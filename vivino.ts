@@ -5,6 +5,7 @@ const resSchema = z.object({
     z.object({
       id: z.number(),
       name: z.string(),
+      seo_name: z.string(),
       // e.g "A fresh, fruity wine with a lovely attack, bringing a reminder of red-berried fruit mingling with the coconut and vanilla aromas from the oak. Full and supple with a long finish. A wine with character which showcases the quality of the grapes used to make it.",
       description: z.string(),
       image: z.object({
@@ -23,6 +24,7 @@ const resSchema = z.object({
           z.object({
             year: z.string(),
             name: z.string(),
+            seo_name: z.string(),
             statistics: z.object({
               // "status": "Normal",
               ratings_count: z.number(),
@@ -46,15 +48,15 @@ interface SearchParams {
   attributesToRetrieve?: Array<"name">;
 }
 
-async function searchWines(searchParams: SearchParams) {
+export async function searchVivinoWinesFromQuery({ query }: { query: string }) {
   const url =
     "https://9takgwjuxl-dsn.algolia.net/1/indexes/WINES_prod/query?x-algolia-agent=Algolia%20for%20JavaScript%20(4.14.2)%3B%20Browser";
 
   // Default values for optional parameters
   const defaultParams: SearchParams = {
-    hitsPerPage: 6,
-    filters: "",
-    ...searchParams,
+    hitsPerPage: 3,
+    filters: "region.country:pt",
+    query,
   };
 
   const response = await fetch(url, {
@@ -85,11 +87,11 @@ async function searchWines(searchParams: SearchParams) {
     const parsedResult = resSchema.parse(result);
     // const parsedResult = JSON.stringify(result, null, 2);
 
-    await Bun.write(
-      `results_${searchParams.attributesToRetrieve ?? "all"}.json`,
-      JSON.stringify(parsedResult, null, 2)
-    );
-    return result;
+    // await Bun.write(
+    //   `results_${searchParams.attributesToRetrieve ?? "all"}.json`,
+    //   JSON.stringify(parsedResult, null, 2)
+    // );
+    return parsedResult;
   } catch (error) {
     console.error("Error performing search:", error.message);
     throw error;
@@ -97,25 +99,36 @@ async function searchWines(searchParams: SearchParams) {
 }
 
 // Example Usage
-const searchExample = async () => {
-  try {
-    // Basic search
-    // await searchWines({
-    //   query: 'vintage port',
-    // });
+// const searchExample = async () => {
+//   try {
+//     // Basic search
+//     // await searchWines({
+//     //   query: 'vintage port',
+//     // });
 
-    // Advanced search with filters
-    await searchWines({
-      // query: ' Dona ERMELINDA (Palmela) 2021',
-      query: "touriga",
-      hitsPerPage: 3,
-      // attributesToRetrieve: ['name'],
-      filters: "region.country:pt",
-      // filters: `name.:"Monte Velho Tinto"`,
-    });
-  } catch (error) {
-    console.error("Search failed:", error);
-  }
+//     // Advanced search with filters
+//     await searchVivinoWinesFromQuery({
+//       // query: ' Dona ERMELINDA (Palmela) 2021',
+//       query: "touriga",
+//       hitsPerPage: 3,
+//       // attributesToRetrieve: ['name'],
+//       filters: "region.country:pt",
+//       // filters: `name.:"Monte Velho Tinto"`,
+//     });
+//   } catch (error) {
+//     console.error("Search failed:", error);
+//   }
+// };
+
+// searchExample();
+
+const processUserUploadedImage = async (request: Request) => {
+  const schema = z.object({
+    // base64 encoded image
+    image: z.string().min(1),
+  });
+
+  const { image } = schema.parse(await request.json());
+
+  const imageBuffer = Buffer.from(image, "base64");
 };
-
-searchExample();
