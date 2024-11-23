@@ -1,12 +1,11 @@
-import { rankWines } from '@/components/wine-score-algorithm';
-import { motion } from 'framer-motion';
-import type { UploadUserImageResponse } from 'lib/main';
-import { Star } from 'lucide-react';
-import Image from 'next/image';
-import { Suspense } from 'react';
+import { motion } from "framer-motion";
+import type { UploadUserImageResponse } from "lib/main";
+import { Star } from "lucide-react";
+import Image from "next/image";
+import { Suspense } from "react";
 
 interface WineListProps {
-  wines: UploadUserImageResponse['winesArray'];
+  wines: UploadUserImageResponse["winesArray"];
 }
 
 function WineImage({ url }: { url: string }) {

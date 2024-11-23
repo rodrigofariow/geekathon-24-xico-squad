@@ -93,42 +93,7 @@ export async function searchVivinoWinesFromQuery({ query }: { query: string }) {
     // );
     return parsedResult;
   } catch (error) {
-    console.error("Error performing search:", error.message);
+    console.error("Error performing search:", error);
     throw error;
   }
 }
-
-// Example Usage
-// const searchExample = async () => {
-//   try {
-//     // Basic search
-//     // await searchWines({
-//     //   query: 'vintage port',
-//     // });
-
-//     // Advanced search with filters
-//     await searchVivinoWinesFromQuery({
-//       // query: ' Dona ERMELINDA (Palmela) 2021',
-//       query: "touriga",
-//       hitsPerPage: 3,
-//       // attributesToRetrieve: ['name'],
-//       filters: "region.country:pt",
-//       // filters: `name.:"Monte Velho Tinto"`,
-//     });
-//   } catch (error) {
-//     console.error("Search failed:", error);
-//   }
-// };
-
-// searchExample();
-
-const processUserUploadedImage = async (request: Request) => {
-  const schema = z.object({
-    // base64 encoded image
-    image: z.string().min(1),
-  });
-
-  const { image } = schema.parse(await request.json());
-
-  const imageBuffer = Buffer.from(image, "base64");
-};

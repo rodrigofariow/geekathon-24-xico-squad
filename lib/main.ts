@@ -7,22 +7,6 @@ import { getOtherImagesPresenceInOriginalImage } from "./compareBottle";
 import type { VivinoImgMeta } from "./compareBottle";
 import { searchVivinoWinesFromQuery } from "./vivino";
 
-// function buildVivinoUrl({
-//   seo_name,
-//   id,
-//   year,
-// }: {
-//   seo_name: string;
-//   id: number;
-//   year?: string;
-// }): string {
-//   const baseUrl = new URL(`https://www.vivino.com/${seo_name}/w/${id}`);
-//   if (year) {
-//     baseUrl.searchParams.set("year", year);
-//   }
-//   return baseUrl.toString();
-// }
-
 function getValidUrlFromVivinoImgPath(path: string): string {
   if (path.startsWith("//")) {
     return `https:${path}`;
@@ -39,45 +23,6 @@ type VivinoSearchResult = Awaited<
 
 const redWineTypeEquivalentArray = ["tinto", "red"];
 const whiteWineTypeEquivalentArray = ["branco", "white"];
-
-// const mockWines: SonnetResponseWithGuesses = [
-//   {
-//     name: "Comenda Grande",
-//     type: "red",
-//     year: "21",
-//     price: "11.99",
-//   },
-//   // {
-//   //   name: "Conventual Reserva",
-//   //   type: "red",
-//   //   year: "2021",
-//   //   price: "11.99",
-//   // },
-//   // {
-//   //   name: "Vila Santa",
-//   //   type: "red",
-//   //   year: "N/A",
-//   //   price: "N/A",
-//   // },
-//   // {
-//   //   name: "Vinha Marines",
-//   //   type: "red",
-//   //   year: "N/A",
-//   //   price: "14.99",
-//   // },
-//   // {
-//   //   name: "Quinta do Carmo",
-//   //   type: "red",
-//   //   year: "2018",
-//   //   price: "19.49",
-//   // },
-//   // {
-//   //   name: "Esporao",
-//   //   type: "red",
-//   //   year: "N/A",
-//   //   price: "N/A",
-//   // },
-// ];
 
 const parseYearFromClaudeRawYear = (
   rawYear: string | null | undefined
@@ -150,7 +95,7 @@ async function partitionData(
         year,
         imgUrl: getValidUrlFromVivinoImgPath(hit.image.location),
         price:
-          hitVintagePrice.checkout_prices.at(0)?.availability.median.amount ??
+          hitVintagePrice?.checkout_prices.at(0)?.availability.median.amount ??
           null,
         rating: hit.vintages[0].statistics.ratings_average,
       });
@@ -236,27 +181,32 @@ async function getWineHitVintagesPrices(
   hitId: VivinoSearchResult["hits"][number]["id"]
 ) {
   const url = `https://www.vivino.com/api/wines/${hitId}/checkout_prices`;
-  const res = await fetch(url);
-  const schema = z.object({
-    checkout_prices: z.array(
-      z.object({
-        availability: z.object({
-          median: z.object({
-            // Amount in EUR
-            amount: z.number(),
+  try {
+    const res = await fetch(url);
+    const schema = z.object({
+      checkout_prices: z.array(
+        z.object({
+          availability: z.object({
+            median: z.object({
+              // Amount in EUR
+              amount: z.number(),
+            }),
+            vintage: z.object({
+              id: z.number(),
+            }),
           }),
-          vintage: z.object({
-            id: z.number(),
-          }),
-        }),
-      })
-    ),
-  });
-  const rawData = await res.json();
-  const parsedData = schema.parse(rawData);
+        })
+      ),
+    });
+    const rawData = await res.json();
+    const parsedData = schema.parse(rawData);
 
-  console.dir(parsedData, { depth: null });
-  return { hitId, ...parsedData };
+    console.dir(parsedData, { depth: null });
+    return { hitId, ...parsedData };
+  } catch (error) {
+    console.error("Error getting wine hit vintages prices:", error);
+    return null;
+  }
 }
 
 export type UploadUserImageResponse = Awaited<
@@ -268,15 +218,8 @@ export async function uploadUserImage({
 }: {
   img: { base64: string; ext: "jpeg" | "png" };
 }): Promise<{
-  // vivinoImgUrls: string[];
   winesArray: Array<ResponseWine>;
 }> {
-  // const data = await getWineHitVintagesPrices(1148721);
-  // if (data) {
-  //   return {
-  //     vivinoImgUrls: [],
-  //   };
-  // }
   const originalImage = img;
   // 1. Get wines list using sonnet, from the uploaded user image
   const timeGuessStart = performance.now();
@@ -292,13 +235,6 @@ export async function uploadUserImage({
       1000
     ).toFixed(2)} seconds`
   );
-  // const guessedWines = [
-  //   { name: "DAO", type: null, year: "2020", price: null },
-  //   { name: "Dona Ermelinda", type: null, year: null, price: null },
-  //   { name: "Dom Martinho", type: null, year: "2023", price: null },
-  //   { name: "Piano", type: null, year: null, price: null },
-  //   { name: "Cabriz", type: null, year: null, price: null },
-  // ];
 
   console.log("------------------------------");
   console.log("guessedWines", guessedWines);
@@ -355,11 +291,6 @@ export async function uploadUserImage({
     }
 
     mostLikelyHitsForGuessedWine.push(...mostLikelyHits);
-
-    // const a = result.hits.filter((hit) =>
-    //   hit.vintages.filter((vintage) => Number(vintage.year) === parsedGuessedWines[0].year)
-    // );
-    // console.log(a);
   }
 
   // for (const [winName, wineHits] of mostLikelyHitsByGuessedWineName) {
@@ -441,7 +372,9 @@ export async function uploadUserImage({
       if (!hit) {
         return;
       }
-      const hitVintagePrice = hitsVintagePrices.find((h) => h.hitId === hit.id);
+      const hitVintagePrice = hitsVintagePrices.find(
+        (h) => h && h.hitId === hit.id
+      );
       winesResponseArray.push({
         hitId: hit.id,
         name: hit.vintages[0].name,

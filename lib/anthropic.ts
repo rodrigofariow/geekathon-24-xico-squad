@@ -1,5 +1,5 @@
 import { Anthropic } from "@anthropic-ai/sdk";
-import { VivinoImgMeta } from "./compareBottle";
+import type { VivinoImgMeta } from "./compareBottle";
 
 // Initialize the Anthropic client
 const anthropic = new Anthropic({
