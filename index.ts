@@ -40,7 +40,7 @@ async function searchWines(searchParams: SearchParams) {
 
   try {
     const result = await response.json();
-    console.log('Search Results:', result);
+    console.log(JSON.stringify(result, null, 2));
     return result;
   } catch (error) {
     console.error('Error performing search:', error.message);
