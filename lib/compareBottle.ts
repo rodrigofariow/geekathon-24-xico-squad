@@ -68,9 +68,10 @@ async function sendImagesToClaude(
         },
       ],
     });
-
-    // Parse and return response
-    return JSON.parse(msg.content[0].text);
+    const result = JSON.parse(msg.content[0].text);
+    return result.wines == undefined
+        ? JSON.parse(msg.content[0].text)
+        : JSON.parse(msg.content[0].text).wines;
   } catch (error) {
     console.error("Error during image comparison:", error);
     throw error;
