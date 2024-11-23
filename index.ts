@@ -10,9 +10,13 @@ const resSchema = z.object({
       image: z.object({
         location: z.string(),
         variations: z.object({
-          label: z.string(),
-          bottle_large: z.string(),
+          label: z.string().optional(),
+          bottle_large: z.string().optional(),
+          large: z.string(),
         }),
+      }),
+      region: z.object({
+        country: z.string(),
       }),
       vintages: z
         .array(
@@ -103,10 +107,11 @@ const searchExample = async () => {
     // Advanced search with filters
     await searchWines({
       // query: ' Dona ERMELINDA (Palmela) 2021',
-      query: "Riscal Rioja",
+      query: "touriga",
       hitsPerPage: 3,
       // attributesToRetrieve: ['name'],
-      // filters: 'country:Portugal',
+      filters: "region.country:pt",
+      // filters: `name.:"Monte Velho Tinto"`,
     });
   } catch (error) {
     console.error("Search failed:", error);
