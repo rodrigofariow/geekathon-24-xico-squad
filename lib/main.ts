@@ -121,7 +121,7 @@ type ResponseWine = {
   year: number | null;
   price: number | null;
   imgUrl: string;
-  rating: number | null;
+  rating: number;
 };
 
 async function partitionData(
