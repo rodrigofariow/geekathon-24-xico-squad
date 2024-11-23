@@ -1,4 +1,6 @@
-export async function captureWines(imageBase64: string) {
+export async function captureWines(imageBase64: string): Promise<{
+  vivinoImgUrls: string[];
+}> {
   try {
     const response = await fetch('/api/wines/capture', {
       method: 'POST',
