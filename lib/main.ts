@@ -122,6 +122,143 @@ type ResponseWine = {
   imgUrl: string;
 };
 
+async function partitionData(
+  mostLikelyHitsForEachWine: Map<
+    // Wine name
+    string,
+    VivinoSearchResult["hits"]
+  >
+) {
+  const hitsThatNeedAnthropicCheckingByWineName = new Map<
+    string,
+    VivinoSearchResult["hits"]
+  >();
+  const readyWines: Array<ResponseWine> = [];
+
+  for (const [wineName, wineHits] of mostLikelyHitsForEachWine) {
+    if (wineHits.length === 1 && wineHits[0].vintages.length === 1) {
+      const hit = wineHits[0];
+      // We only have one option. Nothing to send to sonnet.
+
+      const year = parseYearFromClaudeRawYear(hit.vintages[0].year);
+      const hitVintagePrice = await getWineHitVintagesPrices(hit.id);
+      readyWines.push({
+        name: hit.vintages[0].name,
+        year,
+        imgUrl: getValidUrlFromVivinoImgPath(hit.image.location),
+        price:
+          hitVintagePrice.checkout_prices.at(0)?.availability.median.amount ??
+          null,
+      });
+      continue;
+    }
+
+    hitsThatNeedAnthropicCheckingByWineName.set(wineName, wineHits);
+  }
+
+  return {
+    hitsThatNeedAnthropicCheckingByWineName,
+    readyWines,
+  };
+}
+
+function getMostLikelyHitsForSonnetGuessedWine(
+  result: VivinoSearchResult,
+  { sonnetGuessedWine }: { sonnetGuessedWine: ParsedGuessedWine }
+): VivinoSearchResult["hits"] {
+  /* Logic to match the guessed wine with the vivino result with some heuristics:
+      - name
+      - year
+      - type
+    */
+  const simplifiedMatchedHits: VivinoSearchResult["hits"] = [];
+  for (const hit of result.hits) {
+    const matchedVintagesByYear = hit.vintages.filter((vintage) => {
+      if (Number(vintage.year) === sonnetGuessedWine.year) {
+        return true;
+      }
+      if (
+        Number.isNaN(Number(vintage.year)) &&
+        sonnetGuessedWine.year === null
+      ) {
+        return true;
+      }
+      return false;
+    });
+
+    if (matchedVintagesByYear.length === 0) {
+      continue;
+    }
+
+    if (matchedVintagesByYear.length === 1) {
+      simplifiedMatchedHits.push({ ...hit, vintages: matchedVintagesByYear });
+      continue;
+    }
+
+    // More than one match
+
+    const matchedVintagesByType = matchedVintagesByYear.filter((vintage) => {
+      switch (sonnetGuessedWine.type) {
+        case "red":
+          return redWineTypeEquivalentArray.some((type) =>
+            vintage.seo_name.includes(type)
+          );
+        case "white":
+          return whiteWineTypeEquivalentArray.some((type) =>
+            vintage.seo_name.includes(type)
+          );
+        default: {
+          return false;
+        }
+      }
+    });
+
+    if (matchedVintagesByType.length === 0) {
+      continue;
+    }
+    if (matchedVintagesByType.length === 1) {
+      simplifiedMatchedHits.push({ ...hit, vintages: matchedVintagesByType });
+      continue;
+    }
+    // More than one match
+
+    simplifiedMatchedHits.push({ ...hit, vintages: matchedVintagesByType });
+  }
+
+  return simplifiedMatchedHits;
+}
+
+async function getWineHitVintagesPrices(
+  hitId: VivinoSearchResult["hits"][number]["id"]
+) {
+  const url = `https://www.vivino.com/api/wines/${hitId}/checkout_prices`;
+  const res = await fetch(url);
+  const schema = z.object({
+    checkout_prices: z.array(
+      z.object({
+        availability: z.object({
+          median: z.object({
+            // Amount in EUR
+            amount: z.number(),
+          }),
+          vintage: z.object({
+            id: z.number(),
+          }),
+        }),
+      })
+    ),
+  });
+  const rawData = await res.json();
+  const parsedData = schema.parse(rawData);
+
+  console.dir(parsedData, { depth: null });
+  return { hitId, ...parsedData };
+}
+
+export type UploadUserImageResponse = Awaited<
+  ReturnType<typeof uploadUserImage>
+>;
+
 export async function uploadUserImage({
   img,
 }: {
@@ -331,137 +468,4 @@ export async function uploadUserImage({
   return {
     winesArray: winesResponseArray,
   };
-}
-
-async function partitionData(
-  mostLikelyHitsForEachWine: Map<
-    // Wine name
-    string,
-    VivinoSearchResult["hits"]
-  >
-) {
-  const hitsThatNeedAnthropicCheckingByWineName = new Map<
-    string,
-    VivinoSearchResult["hits"]
-  >();
-  const readyWines: Array<ResponseWine> = [];
-
-  for (const [wineName, wineHits] of mostLikelyHitsForEachWine) {
-    if (wineHits.length === 1 && wineHits[0].vintages.length === 1) {
-      const hit = wineHits[0];
-      // We only have one option. Nothing to send to sonnet.
-
-      const year = parseYearFromClaudeRawYear(hit.vintages[0].year);
-      const hitVintagePrice = await getWineHitVintagesPrices(hit.id);
-      readyWines.push({
-        name: hit.vintages[0].name,
-        year,
-        imgUrl: getValidUrlFromVivinoImgPath(hit.image.location),
-        price:
-          hitVintagePrice.checkout_prices.at(0)?.availability.median.amount ??
-          null,
-      });
-      continue;
-    }
-
-    hitsThatNeedAnthropicCheckingByWineName.set(wineName, wineHits);
-  }
-
-  return {
-    hitsThatNeedAnthropicCheckingByWineName,
-    readyWines,
-  };
-}
-
-function getMostLikelyHitsForSonnetGuessedWine(
-  result: VivinoSearchResult,
-  { sonnetGuessedWine }: { sonnetGuessedWine: ParsedGuessedWine }
-): VivinoSearchResult["hits"] {
-  /* Logic to match the guessed wine with the vivino result with some heuristics:
-      - name
-      - year
-      - type
-    */
-  const simplifiedMatchedHits: VivinoSearchResult["hits"] = [];
-  for (const hit of result.hits) {
-    const matchedVintagesByYear = hit.vintages.filter((vintage) => {
-      if (Number(vintage.year) === sonnetGuessedWine.year) {
-        return true;
-      }
-      if (
-        Number.isNaN(Number(vintage.year)) &&
-        sonnetGuessedWine.year === null
-      ) {
-        return true;
-      }
-      return false;
-    });
-
-    if (matchedVintagesByYear.length === 0) {
-      continue;
-    }
-
-    if (matchedVintagesByYear.length === 1) {
-      simplifiedMatchedHits.push({ ...hit, vintages: matchedVintagesByYear });
-      continue;
-    }
-
-    // More than one match
-
-    const matchedVintagesByType = matchedVintagesByYear.filter((vintage) => {
-      switch (sonnetGuessedWine.type) {
-        case "red":
-          return redWineTypeEquivalentArray.some((type) =>
-            vintage.seo_name.includes(type)
-          );
-        case "white":
-          return whiteWineTypeEquivalentArray.some((type) =>
-            vintage.seo_name.includes(type)
-          );
-        default: {
-          return false;
-        }
-      }
-    });
-
-    if (matchedVintagesByType.length === 0) {
-      continue;
-    }
-    if (matchedVintagesByType.length === 1) {
-      simplifiedMatchedHits.push({ ...hit, vintages: matchedVintagesByType });
-      continue;
-    }
-    // More than one match
-
-    simplifiedMatchedHits.push({ ...hit, vintages: matchedVintagesByType });
-  }
-
-  return simplifiedMatchedHits;
-}
-
-async function getWineHitVintagesPrices(
-  hitId: VivinoSearchResult["hits"][number]["id"]
-) {
-  const url = `https://www.vivino.com/api/wines/${hitId}/checkout_prices`;
-  const res = await fetch(url);
-  const schema = z.object({
-    checkout_prices: z.array(
-      z.object({
-        availability: z.object({
-          median: z.object({
-            // Amount in EUR
-            amount: z.number(),
-          }),
-          vintage: z.object({
-            id: z.number(),
-          }),
-        }),
-      })
-    ),
-  });
-  const rawData = await res.json();
-  const parsedData = schema.parse(rawData);
-
-  console.dir(parsedData, { depth: null });
-  return { hitId, ...parsedData };
 }
