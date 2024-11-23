@@ -1,5 +1,6 @@
-import { type SonnetResponseWithGuesses } from "./anthropic.ts";
-import { searchVivinoWinesFromQuery } from "./vivino.ts";
+import { type SonnetResponseWithGuesses } from "./anthropic";
+import { getOtherImagesPresenceInOriginalImage } from "./compareBottle.js";
+import { searchVivinoWinesFromQuery } from "./vivino";
 
 type VivinoSearchResult = Awaited<
   ReturnType<typeof searchVivinoWinesFromQuery>
@@ -78,7 +79,12 @@ const parseGuessedWines = (
   );
 };
 
-async function main() {
+async function uploadUserImage({
+  img,
+}: {
+  img: { base64: string; ext: "jpeg" | "png" };
+}) {
+  const originalImage = img;
   // 1. Get wines list using sonnet, from the uploaded user image
   const guessedWines = mockWines;
   const parsedGuessedWines = parseGuessedWines(guessedWines);
@@ -90,14 +96,23 @@ async function main() {
   // 2. Get results from vivino for each guessed wine
   const vivinoResults = await Promise.all(vivinoCalls);
 
-  const mostLikelyHitsForEachWine: VivinoSearchResult["hits"][] = [];
+  const mostLikelyHitsByGuessedWineName = new Map<
+    // Wine name
+    string,
+    VivinoSearchResult["hits"]
+  >();
   for (const [index, result] of vivinoResults.entries()) {
     // console.dir(result, { depth: null });
     const sonnetGuessedWine = parsedGuessedWines[index];
 
-    if (mostLikelyHitsForEachWine[index] === undefined) {
-      mostLikelyHitsForEachWine[index] = [];
+    const mostLikelyHitsForGuessedWineOrUndefined =
+      mostLikelyHitsByGuessedWineName.get(sonnetGuessedWine.name);
+    if (mostLikelyHitsForGuessedWineOrUndefined === undefined) {
+      mostLikelyHitsByGuessedWineName.set(sonnetGuessedWine.name, []);
     }
+    const mostLikelyHitsForGuessedWine = mostLikelyHitsByGuessedWineName.get(
+      sonnetGuessedWine.name
+    ) as Exclude<typeof mostLikelyHitsForGuessedWineOrUndefined, undefined>;
 
     const mostLikelyHits = getMostLikelyHitsForSonnetGuessedWine(result, {
       sonnetGuessedWine,
@@ -110,7 +125,7 @@ async function main() {
 
     if (mostLikelyHits.length === 0) {
       const defaultHit = result.hits[0];
-      mostLikelyHitsForEachWine[index].push(defaultHit);
+      mostLikelyHitsForGuessedWine.push(defaultHit);
       continue;
     }
 
@@ -118,11 +133,11 @@ async function main() {
       mostLikelyHits.length === 1 &&
       mostLikelyHits[0].vintages.length === 1
     ) {
-      mostLikelyHitsForEachWine[index].push(mostLikelyHits[0]);
+      mostLikelyHitsForGuessedWine.push(mostLikelyHits[0]);
       continue;
     }
 
-    mostLikelyHitsForEachWine[index].push(...mostLikelyHits);
+    mostLikelyHitsForGuessedWine.push(...mostLikelyHits);
 
     // const a = result.hits.filter((hit) =>
     //   hit.vintages.filter((vintage) => Number(vintage.year) === parsedGuessedWines[0].year)
@@ -130,14 +145,91 @@ async function main() {
     // console.log(a);
   }
 
-  for (const [index, hits] of mostLikelyHitsForEachWine.entries()) {
-    console.log(`Wine: ${parsedGuessedWines[index].name}`);
+  for (const [winName, wineHits] of mostLikelyHitsByGuessedWineName) {
+    console.log(`Wine: ${winName}`);
     console.log("mostLikelyHitsForEachWine");
-    console.dir(hits, { depth: null });
+    console.dir(wineHits, { depth: null });
     console.log("\n");
   }
 
+  // const finalVivinoUrls: string[] = [];
+  // const { hitsThatNeedAnthropicChecking, readyVivinoUrls } = partitionData(
+  //   mostLikelyHitsByGuessedWineName
+  // );
+  // finalVivinoUrls.push(...readyVivinoUrls);
+
+  // for (const [wineName, hit] of hitsThatNeedAnthropicChecking) {
+  //   console.log(hit.name);
+  //   const originalUserUploadedImageBase64 = [];
+
+  //   const otherImagesPresence = await getOtherImagesPresenceInOriginalImage({
+  //     originalImage: {
+  //       name: "original",
+  //       base64: originalImage.base64,
+  //       fileExtension: originalImage.ext,
+  //     },
+  //     otherImages: hit.vintages,
+  //   });
+  //   otherImagesPresence.forEach(({ fileName, isPresent }) => {
+  //     if (isPresent) {
+  //       finalVivinoUrls.push(fileName);
+  //     }
+  //   });
+  //   // TODO: Call compareBottle
+  // }
+
   await Bun.write(`results_main.json`, JSON.stringify(vivinoResults, null, 2));
+}
+
+function buildVivinoUrl({
+  seo_name,
+  id,
+  year,
+}: {
+  seo_name: string;
+  id: number;
+  year?: string;
+}): string {
+  const baseUrl = new URL(`https://www.vivino.com/${seo_name}/w/${id}`);
+  if (year) {
+    baseUrl.searchParams.set("year", year);
+  }
+  return baseUrl.toString();
+}
+
+function partitionData(
+  mostLikelyHitsForEachWine: Map<
+    // Wine name
+    string,
+    VivinoSearchResult["hits"]
+  >
+) {
+  const hitsThatNeedAnthropicCheckingByWineName = new Map<
+    string,
+    VivinoSearchResult["hits"]
+  >();
+  const readyVivinoUrls: string[] = [];
+
+  for (const [wineName, wineHits] of mostLikelyHitsForEachWine) {
+    if (wineHits.length === 1 && wineHits[0].vintages.length === 1) {
+      const hit = wineHits[0];
+      // We only have one option. Nothing to send to sonnet.
+      const vivinoUrl = buildVivinoUrl({
+        seo_name: hit.seo_name,
+        id: hit.id,
+        year: hit.vintages[0].year,
+      });
+      readyVivinoUrls.push(vivinoUrl);
+      continue;
+    }
+
+    hitsThatNeedAnthropicCheckingByWineName.set(wineName, wineHits);
+  }
+
+  return {
+    hitsThatNeedAnthropicCheckingByWineName,
+    readyVivinoUrls,
+  };
 }
 
 function getMostLikelyHitsForSonnetGuessedWine(
@@ -206,4 +298,4 @@ function getMostLikelyHitsForSonnetGuessedWine(
   return simplifiedMatchedHits;
 }
 
-main();
+uploadUserImage({ img: { base64: "", ext: "jpeg" } });
