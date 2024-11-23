@@ -1,35 +1,32 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ImageUploader } from './image-uploader';
 import { WineList } from './wine-list';
 import { Wine } from 'lucide-react';
+import type { UploadUserImageResponse } from 'lib/main';
 
 export function WineAnalyzer() {
   const [image, setImage] = useState<string | null>(null);
   const [analyzing, setAnalyzing] = useState(false);
   const [wines, setWines] = useState<
-    Array<{ name: string; price: number; value: number }>
-  >([]);
-  const [preloadedResults, setPreloadedResults] = useState<any>(null);
+    UploadUserImageResponse['winesArray'] | undefined
+  >(undefined);
 
-  const handleImageUpload = (imageDataUrl: string, results?: any) => {
+  const handleImageUpload = (
+    imageDataUrl: string,
+    results?: UploadUserImageResponse
+  ) => {
     setImage(imageDataUrl);
-    setWines([]);
-    setPreloadedResults(results || null);
-  };
 
-  console.log({ analyzing });
-
-  // Watch for preloaded results
-  useEffect(() => {
-    if (preloadedResults) {
+    if (results) {
+      setWines(results?.winesArray || []);
       setAnalyzing(false);
     }
-  }, [preloadedResults]);
+  };
 
   const analyzeImage = async () => {
     if (!image) return;
@@ -37,9 +34,8 @@ export function WineAnalyzer() {
     setAnalyzing(true);
     try {
       // If we have preloaded results, just wait for minimum time
-      if (preloadedResults) {
+      if (wines) {
         setTimeout(() => {
-          setWines(preloadedResults.wines);
           setAnalyzing(false);
         }, 1_000);
       }
@@ -92,7 +88,7 @@ export function WineAnalyzer() {
             )}
           </Button>
           <AnimatePresence>
-            {wines?.length > 0 && <WineList wines={wines} />}
+            {wines && Number(wines?.length) > 0 && <WineList wines={wines} />}
           </AnimatePresence>
         </CardContent>
       </Card>
