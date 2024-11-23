@@ -6,7 +6,7 @@ const anthropic = new Anthropic({
     apiKey:process.env.API_KEY,
 });
 
-async function sendImageToClaude(imagePath: string) {
+async function sendImageToClaude(imagePath: string, formatType: string) {
     try {
         // Read the image file and convert it to base64
         const imageBuffer = fs.readFileSync(imagePath);
@@ -24,7 +24,7 @@ async function sendImageToClaude(imagePath: string) {
                             type: "image",
                             source: {
                                 type: "base64",
-                                media_type: "image/jpeg", // or "image/png" depending on your image
+                                media_type: "image/"+formatType, // or "image/png" depending on your image
                                 data: base64Image,
                             }
                         },
@@ -79,7 +79,16 @@ async function sendImageToClaude(imagePath: string) {
 // Example usage
 async function example(imageName: string) {
     try {
-        return  await sendImageToClaude('./'+imageName+'.jpg');
+        const allowedTypes = ['jpeg', 'png'];
+
+        const fileExtension = imageName.split('.').pop()?.toLowerCase();
+
+        // Check if the file extension is valid
+        if (!fileExtension || !allowedTypes.includes(fileExtension)) {
+            throw new Error(`Invalid file type. Only ${allowedTypes.join(', ')} files are allowed.`);
+        }
+
+        return  await sendImageToClaude('./'+imageName, fileExtension);
     } catch (error) {
         console.error('Failed to process image:', error);
     }
@@ -143,4 +152,4 @@ async function sendImageFromUrl(imageUrl: string) {
     }
 }
 
-console.log(await example("bottles"));
+console.log(await example("bottles.jpeg"));
