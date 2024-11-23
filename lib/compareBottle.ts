@@ -8,7 +8,7 @@ const anthropic = new Anthropic({
 });
 
 async function sendImagesToClaude(
-  originalImageBase64: string,
+  originalImage: VivinoImgMeta,
   potentialImages: VivinoImgMeta[]
 ) {
   const fileExtension = path.extname(originalImagePath).slice(1).toLowerCase();
@@ -86,11 +86,11 @@ export type VivinoImgMeta = {
 };
 
 export async function compare(
-  originalImageBase64: string,
+  originalImage: VivinoImgMeta,
   otherImages: VivinoImgMeta[]
 ) {
   // Use the sendImagesToClaude function
-  return await sendImagesToClaude(originalImageBase64, otherImages);
+  return await sendImagesToClaude(originalImage, otherImages);
 }
 
 // Example usage     const results = await compare("bottles.jpeg", "asdssi1.jpeg", "ermelindaQWERT.jpeg");
