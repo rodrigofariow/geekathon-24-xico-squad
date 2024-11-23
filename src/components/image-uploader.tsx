@@ -5,9 +5,13 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
 import { captureWines } from '@/lib/actions';
+import type { UploadUserImageResponse } from 'lib/main';
 
 interface ImageUploaderProps {
-  onImageUpload: (imageDataUrl: string, preloadedResults?: any) => void;
+  onImageUpload: (
+    imageDataUrl: string,
+    preloadedResults?: UploadUserImageResponse
+  ) => void;
 }
 
 export function ImageUploader({ onImageUpload }: ImageUploaderProps) {

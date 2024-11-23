@@ -1,17 +1,40 @@
+import { rankWines } from '@/components/wine-score-algorithm';
 import { motion } from 'framer-motion';
+import type { UploadUserImageResponse } from 'lib/main';
 import { Star } from 'lucide-react';
-
-interface Wine {
-  name: string;
-  price: number;
-  value: number;
-}
+import Image from 'next/image';
+import { Suspense } from 'react';
 
 interface WineListProps {
-  wines: Wine[];
+  wines: UploadUserImageResponse['winesArray'];
+}
+
+function WineImage({ url }: { url: string }) {
+  return (
+    <div className="relative w-16 h-16 mr-4">
+      <Image
+        src={url}
+        alt="Wine bottle"
+        fill
+        className="object-cover rounded-md"
+        sizes="64px"
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx0fHRsdHSIeHx8hHiMkIyAgJCQjLjouMC0yLiRHSj0+PUg3OD5MREVESkQ8SEtEPj//2wBDAQoLCw4NDhwQEBw+JSAlPj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+      />
+    </div>
+  );
 }
 
 export function WineList({ wines }: WineListProps) {
+  const sortedWines = wines.sort((a, b) => {
+    // First sort by rating in descending order
+    if (b.rating !== a.rating) {
+      return b.rating - a.rating;
+    }
+    // If ratings are equal, sort by price in ascending order
+    return a.price - b.price;
+  });
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,26 +47,35 @@ export function WineList({ wines }: WineListProps) {
         Curated Selection
       </h2>
       <ul className="space-y-2">
-        {wines.map((wine, index) => (
+        {sortedWines.map((wine, index) => (
           <motion.li
-            key={index}
+            key={wine.hitId}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className="flex justify-between items-center bg-amber-50/70 backdrop-blur-sm p-3 rounded-lg shadow-md border border-amber-200"
+            className="flex items-center bg-amber-50/70 backdrop-blur-sm p-3 rounded-lg shadow-md border border-amber-200"
           >
-            <div>
+            <Suspense
+              fallback={
+                <div className="w-16 h-16 mr-4 bg-amber-200/50 animate-pulse rounded-md" />
+              }
+            >
+              {wine.imgUrl && <WineImage url={wine.imgUrl} />}
+            </Suspense>
+
+            <div className="flex-1">
               <span className="font-serif text-red-900">{wine.name}</span>
-              <div className="text-sm text-red-700">Price: ${wine.price}</div>
+              <div className="text-sm text-red-700">Price: €{wine.price}</div>
             </div>
-            <div className="flex items-center">
+
+            <div className="flex items-center ml-4">
               <span className="text-amber-500 mr-1">
-                {Array.from({ length: Math.round(wine.value) }).map((_, i) => (
+                {Array.from({ length: Math.round(wine.rating) }).map((_, i) => (
                   <Star key={i} className="inline-block w-4 h-4 fill-current" />
                 ))}
               </span>
               <span className="text-sm text-red-700">
-                {wine.value.toFixed(1)}/10
+                {wine.rating.toFixed(1)}
               </span>
             </div>
           </motion.li>
