@@ -120,6 +120,7 @@ type ResponseWine = {
   year: number | null;
   price: number | null;
   imgUrl: string;
+  rating: number | null;
 };
 
 async function partitionData(
@@ -149,6 +150,7 @@ async function partitionData(
         price:
           hitVintagePrice.checkout_prices.at(0)?.availability.median.amount ??
           null,
+        rating: hit.vintages[0].statistics.ratings_average,
       });
       continue;
     }
@@ -445,6 +447,7 @@ export async function uploadUserImage({
         price:
           hitVintagePrice?.checkout_prices.at(0)?.availability.median.amount ??
           null,
+        rating: hit.vintages[0].statistics.ratings_average,
       });
     });
   }
