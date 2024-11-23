@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
+import { captureWines } from '@/lib/actions';
 
 interface ImageUploaderProps {
   onImageUpload: (imageDataUrl: string) => void;
@@ -11,6 +12,7 @@ interface ImageUploaderProps {
 
 export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
   const [dragActive, setDragActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleDrag = (e: React.DragEvent) => {
@@ -39,14 +41,31 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
     }
   };
 
-  const handleFiles = (files: FileList) => {
+  const handleFiles = async (files: FileList) => {
     const file = files[0];
     const reader = new FileReader();
-    reader.onload = (e) => {
+
+    reader.onload = async (e) => {
       if (e.target && typeof e.target.result === 'string') {
         onImageUpload(e.target.result);
+
+        try {
+          setIsLoading(true);
+          const formData = new FormData();
+          formData.append('image', file);
+
+          const result = await captureWines(formData);
+          console.log('Wine capture result:', result);
+          // TODO: Handle the successful response
+        } catch (error) {
+          console.error('Failed to capture wines:', error);
+          // TODO: Handle the error state
+        } finally {
+          setIsLoading(false);
+        }
       }
     };
+
     reader.readAsDataURL(file);
   };
 
@@ -91,9 +110,10 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
       <Button
         onClick={onButtonClick}
         className="bg-gradient-to-r from-red-800 to-red-600 hover:from-red-900 hover:to-red-700 text-amber-100 transition-all duration-300 ease-in-out transform hover:scale-105"
+        disabled={isLoading}
       >
         <Camera className="mr-2" />
-        Capture Your Wines
+        {isLoading ? 'Analyzing...' : 'Capture Your Wines'}
       </Button>
     </motion.div>
   );

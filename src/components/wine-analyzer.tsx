@@ -16,6 +16,7 @@ export function WineAnalyzer() {
   >([]);
 
   const handleImageUpload = (imageDataUrl: string) => {
+    console.log('Image uploaded:', imageDataUrl);
     setImage(imageDataUrl);
     setWines([]);
   };
