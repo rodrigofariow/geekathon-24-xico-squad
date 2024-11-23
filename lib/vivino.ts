@@ -54,7 +54,7 @@ export async function searchVivinoWinesFromQuery({ query }: { query: string }) {
 
   // Default values for optional parameters
   const defaultParams: SearchParams = {
-    hitsPerPage: 3,
+    hitsPerPage: 4,
     filters: "region.country:pt",
     query,
   };
