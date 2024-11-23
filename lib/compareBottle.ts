@@ -44,7 +44,6 @@ async function sendImagesToClaude(
               text:
                 `Below are potential images to compare.
                 Only give matches if the image is present if you are 100% sure
-               
                Their file names are:\n\n` +
                 potentialImagesAfterMap
                   .map(({ fileName }, index) => `${index + 1}. ${fileName}`)
@@ -53,7 +52,7 @@ async function sendImagesToClaude(
                 `{\n` +
                 `  "name": "name of the wine (extracted from the label)",\n` +
                 `  "fileName": "fileName of the image",\n` +
-                `  "isPresent": true/false // Whether the wine is in the original image, to be true you need to have an exact match.  Use the label information and colors to compare. The logos needs to be exat the same, your life depends on this.\n` +
+                `  "isPresent": true/false // Whether the wine is in the original image use the label information and colors to compare. The logos needs to be exat the same, your life depends on this.\n` +
                 `}\n` +
                 `Respond strictly in JSON format without explanations or extra text.`,
             },
