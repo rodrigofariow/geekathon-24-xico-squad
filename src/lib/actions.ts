@@ -1,8 +1,11 @@
-export async function captureWines(imageData: FormData) {
+export async function captureWines(imageBase64: string) {
   try {
     const response = await fetch('/api/wines/capture', {
       method: 'POST',
-      body: imageData,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ image: imageBase64 }),
     });
 
     if (!response.ok) {

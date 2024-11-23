@@ -51,10 +51,7 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
 
         try {
           setIsLoading(true);
-          const formData = new FormData();
-          formData.append('image', file);
-
-          const result = await captureWines(formData);
+          const result = await captureWines(e.target.result);
           console.log('Wine capture result:', result);
           // TODO: Handle the successful response
         } catch (error) {

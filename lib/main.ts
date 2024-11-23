@@ -1,50 +1,49 @@
-import { type SonnetResponseWithGuesses } from "./anthropic";
-import { getOtherImagesPresenceInOriginalImage } from "./compareBottle.js";
-import { searchVivinoWinesFromQuery } from "./vivino";
+import { type SonnetResponseWithGuesses } from './anthropic';
+import { searchVivinoWinesFromQuery } from './vivino';
 
 type VivinoSearchResult = Awaited<
   ReturnType<typeof searchVivinoWinesFromQuery>
 >;
 
-const redWineTypeEquivalentArray = ["tinto", "red"];
-const whiteWineTypeEquivalentArray = ["branco", "white"];
+const redWineTypeEquivalentArray = ['tinto', 'red'];
+const whiteWineTypeEquivalentArray = ['branco', 'white'];
 
 const mockWines: SonnetResponseWithGuesses = [
   {
-    name: "Comenda Grande",
-    type: "red",
-    year: "21",
-    price: "11.99",
+    name: 'Comenda Grande',
+    type: 'red',
+    year: '21',
+    price: '11.99',
   },
   {
-    name: "Conventual Reserva",
-    type: "red",
-    year: "2021",
-    price: "11.99",
+    name: 'Conventual Reserva',
+    type: 'red',
+    year: '2021',
+    price: '11.99',
   },
   {
-    name: "Vila Santa",
-    type: "red",
-    year: "N/A",
-    price: "N/A",
+    name: 'Vila Santa',
+    type: 'red',
+    year: 'N/A',
+    price: 'N/A',
   },
   {
-    name: "Vinha Marines",
-    type: "red",
-    year: "N/A",
-    price: "14.99",
+    name: 'Vinha Marines',
+    type: 'red',
+    year: 'N/A',
+    price: '14.99',
   },
   {
-    name: "Quinta do Carmo",
-    type: "red",
-    year: "2018",
-    price: "19.49",
+    name: 'Quinta do Carmo',
+    type: 'red',
+    year: '2018',
+    price: '19.49',
   },
   {
-    name: "Esporao",
-    type: "red",
-    year: "N/A",
-    price: "N/A",
+    name: 'Esporao',
+    type: 'red',
+    year: 'N/A',
+    price: 'N/A',
   },
 ];
 
@@ -64,7 +63,7 @@ const parseYearFromClaudeRawYear = (rawYear: string): number | null => {
 
 type ParsedGuessedWine = {
   name: string;
-  type: "red" | "white" | null;
+  type: 'red' | 'white' | null;
   year: number | null;
 };
 
@@ -79,10 +78,10 @@ const parseGuessedWines = (
   );
 };
 
-async function uploadUserImage({
+export async function uploadUserImage({
   img,
 }: {
-  img: { base64: string; ext: "jpeg" | "png" };
+  img: { base64: string; ext: 'jpeg' | 'png' };
 }) {
   const originalImage = img;
   // 1. Get wines list using sonnet, from the uploaded user image
@@ -99,7 +98,7 @@ async function uploadUserImage({
   const mostLikelyHitsByGuessedWineName = new Map<
     // Wine name
     string,
-    VivinoSearchResult["hits"]
+    VivinoSearchResult['hits']
   >();
   for (const [index, result] of vivinoResults.entries()) {
     // console.dir(result, { depth: null });
@@ -147,9 +146,9 @@ async function uploadUserImage({
 
   for (const [winName, wineHits] of mostLikelyHitsByGuessedWineName) {
     console.log(`Wine: ${winName}`);
-    console.log("mostLikelyHitsForEachWine");
+    console.log('mostLikelyHitsForEachWine');
     console.dir(wineHits, { depth: null });
-    console.log("\n");
+    console.log('\n');
   }
 
   // const finalVivinoUrls: string[] = [];
@@ -192,7 +191,7 @@ function buildVivinoUrl({
 }): string {
   const baseUrl = new URL(`https://www.vivino.com/${seo_name}/w/${id}`);
   if (year) {
-    baseUrl.searchParams.set("year", year);
+    baseUrl.searchParams.set('year', year);
   }
   return baseUrl.toString();
 }
@@ -201,12 +200,12 @@ function partitionData(
   mostLikelyHitsForEachWine: Map<
     // Wine name
     string,
-    VivinoSearchResult["hits"]
+    VivinoSearchResult['hits']
   >
 ) {
   const hitsThatNeedAnthropicCheckingByWineName = new Map<
     string,
-    VivinoSearchResult["hits"]
+    VivinoSearchResult['hits']
   >();
   const readyVivinoUrls: string[] = [];
 
@@ -235,13 +234,13 @@ function partitionData(
 function getMostLikelyHitsForSonnetGuessedWine(
   result: VivinoSearchResult,
   { sonnetGuessedWine }: { sonnetGuessedWine: ParsedGuessedWine }
-): VivinoSearchResult["hits"] {
+): VivinoSearchResult['hits'] {
   /* Logic to match the guessed wine with the vivino result with some heuristics:
       - name
       - year
       - type
     */
-  const simplifiedMatchedHits: VivinoSearchResult["hits"] = [];
+  const simplifiedMatchedHits: VivinoSearchResult['hits'] = [];
   for (const hit of result.hits) {
     const matchedVintagesByYear = hit.vintages.filter((vintage) => {
       if (Number(vintage.year) === sonnetGuessedWine.year) {
@@ -269,11 +268,11 @@ function getMostLikelyHitsForSonnetGuessedWine(
 
     const matchedVintagesByType = matchedVintagesByYear.filter((vintage) => {
       switch (sonnetGuessedWine.type) {
-        case "red":
+        case 'red':
           return redWineTypeEquivalentArray.some((type) =>
             vintage.seo_name.includes(type)
           );
-        case "white":
+        case 'white':
           return whiteWineTypeEquivalentArray.some((type) =>
             vintage.seo_name.includes(type)
           );
@@ -297,5 +296,3 @@ function getMostLikelyHitsForSonnetGuessedWine(
 
   return simplifiedMatchedHits;
 }
-
-uploadUserImage({ img: { base64: "", ext: "jpeg" } });
