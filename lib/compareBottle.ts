@@ -82,6 +82,7 @@ async function sendImagesToClaude(
 export type VivinoImgMeta = {
   name: string;
   base64: string;
+  fileExtension: "jpeg" | "png";
 };
 
 export async function compare(
