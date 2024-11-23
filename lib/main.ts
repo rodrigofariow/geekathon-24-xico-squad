@@ -1,3 +1,4 @@
+import { z } from "zod";
 import {
   getAllBottlesFromImage,
   type SonnetResponseWithGuesses,
@@ -6,20 +7,30 @@ import { getOtherImagesPresenceInOriginalImage } from "./compareBottle";
 import type { VivinoImgMeta } from "./compareBottle";
 import { searchVivinoWinesFromQuery } from "./vivino";
 
-function buildVivinoUrl({
-  seo_name,
-  id,
-  year,
-}: {
-  seo_name: string;
-  id: number;
-  year?: string;
-}): string {
-  const baseUrl = new URL(`https://www.vivino.com/${seo_name}/w/${id}`);
-  if (year) {
-    baseUrl.searchParams.set("year", year);
+// function buildVivinoUrl({
+//   seo_name,
+//   id,
+//   year,
+// }: {
+//   seo_name: string;
+//   id: number;
+//   year?: string;
+// }): string {
+//   const baseUrl = new URL(`https://www.vivino.com/${seo_name}/w/${id}`);
+//   if (year) {
+//     baseUrl.searchParams.set("year", year);
+//   }
+//   return baseUrl.toString();
+// }
+
+function getValidUrlFromVivinoImgPath(path: string): string {
+  if (path.startsWith("//")) {
+    return `https:${path}`;
   }
-  return baseUrl.toString();
+  if (path.startsWith("http")) {
+    return path;
+  }
+  return path;
 }
 
 type VivinoSearchResult = Awaited<
@@ -104,13 +115,27 @@ const parseGuessedWines = (
   );
 };
 
+type ResponseWine = {
+  name: string;
+  year: number | null;
+  price: number | null;
+  imgUrl: string;
+};
+
 export async function uploadUserImage({
   img,
 }: {
   img: { base64: string; ext: "jpeg" | "png" };
 }): Promise<{
-  vivinoImgUrls: string[];
+  // vivinoImgUrls: string[];
+  winesArray: Array<ResponseWine>;
 }> {
+  // const data = await getWineHitVintagesPrices(1148721);
+  // if (data) {
+  //   return {
+  //     vivinoImgUrls: [],
+  //   };
+  // }
   const originalImage = img;
   // 1. Get wines list using sonnet, from the uploaded user image
   const timeGuessStart = performance.now();
@@ -203,17 +228,15 @@ export async function uploadUserImage({
   //   console.log("\n");
   // }
 
-  const finalVivinoUrls: string[] = [];
-  const { hitsThatNeedAnthropicCheckingByWineName, readyVivinoUrls } =
-    partitionData(mostLikelyHitsByGuessedWineName);
-
-  finalVivinoUrls.push(...readyVivinoUrls);
+  const { hitsThatNeedAnthropicCheckingByWineName, readyWines } =
+    await partitionData(mostLikelyHitsByGuessedWineName);
+  const winesResponseArray: Array<ResponseWine> = readyWines;
 
   console.log(
     "hitsThatNeedAnthropicCheckingByWineName",
     hitsThatNeedAnthropicCheckingByWineName
   );
-  console.log("readyVivinoUrls", readyVivinoUrls);
+  console.dir(readyWines, { depth: null });
 
   async function processWine(
     wineName: string,
@@ -221,15 +244,7 @@ export async function uploadUserImage({
   ) {
     const imgsBase64 = await Promise.all(
       wineHits.map((hit) => {
-        const imgUrl = ((): string => {
-          if (hit.image.location.startsWith("//")) {
-            return `https:${hit.image.location}`;
-          }
-          if (hit.image.location.startsWith("http")) {
-            return hit.image.location;
-          }
-          return hit.image.location;
-        })();
+        const imgUrl = getValidUrlFromVivinoImgPath(hit.image.location);
 
         return fetch(imgUrl)
           .then((res) => res.arrayBuffer())
@@ -268,6 +283,11 @@ export async function uploadUserImage({
       otherImages,
     });
 
+    const hitsVintagePricesPromises = wineHits.map((hit) =>
+      getWineHitVintagesPrices(hit.id)
+    );
+    const hitsVintagePrices = await Promise.all(hitsVintagePricesPromises);
+
     console.log("------------------------------");
     console.log(`otherImagesPresence for ${wineName}`, otherImagesPresence);
     console.log("------------------------------");
@@ -280,13 +300,15 @@ export async function uploadUserImage({
       if (!hit) {
         return;
       }
-      finalVivinoUrls.push(
-        buildVivinoUrl({
-          seo_name: hit.seo_name,
-          id: hit.id,
-          year: hit.vintages[0].year,
-        })
-      );
+      const hitVintagePrice = hitsVintagePrices.find((h) => h.hitId === hit.id);
+      winesResponseArray.push({
+        name: hit.vintages[0].name,
+        year: parseYearFromClaudeRawYear(hit.vintages[0].year),
+        imgUrl: getValidUrlFromVivinoImgPath(hit.image.location),
+        price:
+          hitVintagePrice?.checkout_prices.at(0)?.availability.median.amount ??
+          null,
+      });
     });
   }
 
@@ -307,11 +329,11 @@ export async function uploadUserImage({
   // await Bun.write(`results_main.json`, JSON.stringify(vivinoResults, null, 2));
 
   return {
-    vivinoImgUrls: finalVivinoUrls,
+    winesArray: winesResponseArray,
   };
 }
 
-function partitionData(
+async function partitionData(
   mostLikelyHitsForEachWine: Map<
     // Wine name
     string,
@@ -322,18 +344,23 @@ function partitionData(
     string,
     VivinoSearchResult["hits"]
   >();
-  const readyVivinoUrls: string[] = [];
+  const readyWines: Array<ResponseWine> = [];
 
   for (const [wineName, wineHits] of mostLikelyHitsForEachWine) {
     if (wineHits.length === 1 && wineHits[0].vintages.length === 1) {
       const hit = wineHits[0];
       // We only have one option. Nothing to send to sonnet.
-      const vivinoUrl = buildVivinoUrl({
-        seo_name: hit.seo_name,
-        id: hit.id,
-        year: hit.vintages[0].year,
+
+      const year = parseYearFromClaudeRawYear(hit.vintages[0].year);
+      const hitVintagePrice = await getWineHitVintagesPrices(hit.id);
+      readyWines.push({
+        name: hit.vintages[0].name,
+        year,
+        imgUrl: getValidUrlFromVivinoImgPath(hit.image.location),
+        price:
+          hitVintagePrice.checkout_prices.at(0)?.availability.median.amount ??
+          null,
       });
-      readyVivinoUrls.push(vivinoUrl);
       continue;
     }
 
@@ -342,7 +369,7 @@ function partitionData(
 
   return {
     hitsThatNeedAnthropicCheckingByWineName,
-    readyVivinoUrls,
+    readyWines,
   };
 }
 
@@ -410,4 +437,31 @@ function getMostLikelyHitsForSonnetGuessedWine(
   }
 
   return simplifiedMatchedHits;
+}
+
+async function getWineHitVintagesPrices(
+  hitId: VivinoSearchResult["hits"][number]["id"]
+) {
+  const url = `https://www.vivino.com/api/wines/${hitId}/checkout_prices`;
+  const res = await fetch(url);
+  const schema = z.object({
+    checkout_prices: z.array(
+      z.object({
+        availability: z.object({
+          median: z.object({
+            // Amount in EUR
+            amount: z.number(),
+          }),
+          vintage: z.object({
+            id: z.number(),
+          }),
+        }),
+      })
+    ),
+  });
+  const rawData = await res.json();
+  const parsedData = schema.parse(rawData);
+
+  console.dir(parsedData, { depth: null });
+  return { hitId, ...parsedData };
 }
