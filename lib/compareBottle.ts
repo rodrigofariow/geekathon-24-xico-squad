@@ -54,7 +54,7 @@ async function sendImagesToClaude(
                 `  "fileName": "fileName of the image",\n` +
                 `  "isPresent": true/false // Whether the wine is in the original image use the label information and colors to compare. The logos needs to be exat the same, your life depends on this.\n` +
                 `}\n` +
-                `Respond strictly in JSON format without explanations or extra text. Only 1 image could be present, there could never be a case where 2 images are present`,
+                `Respond strictly in JSON format without explanations or extra text.`,
             },
             ...potentialImages.map(({ base64, fileExtension }) => ({
               type: "image",
