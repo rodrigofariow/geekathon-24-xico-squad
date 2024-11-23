@@ -35,7 +35,7 @@ async function sendImageToClaude(imagePath: string, formatType: string) {
                                 "The response must be only JSON format or else, you die. Json format must be:\n" +
                                 "\n" +
                                 "name: The name of the wine.\n" +
-                                "type: Specify if the wine is red, white, or green.\n" +
+                                "type: Specify if the wine is red, white, or green.Only specify is it's written on the label\n" +
                                 "year: The year of the wine, or N/A if not available.\n" +
                                 "price: The price of the wine, or N/A if not available." +
                                 "Example: [\n" +
