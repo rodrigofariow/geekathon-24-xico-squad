@@ -35,9 +35,9 @@ async function sendImageToClaude(imagePath: string, formatType: string) {
                                 "The response must be only JSON format or else, you die. Json format must be:\n" +
                                 "\n" +
                                 "name: The name of the wine.\n" +
-                                "type: Specify if the wine is red, white, or green.Only specify is it's written on the label\n" +
-                                "year: The year of the wine, or N/A if not available.\n" +
-                                "price: The price of the wine, or N/A if not available." +
+                                "type: Specify if the wine is red, white, or green.Only specify is it's written on the label. Possible options: red or white, null if not available\n" +
+                                "year: The year of the wine, or null if not available.\n" +
+                                "price: The price of the wine, or null if not available." +
                                 "Example: [\n" +
                                 "  {\n" +
                                 "  {\n" +
@@ -46,7 +46,7 @@ async function sendImageToClaude(imagePath: string, formatType: string) {
                                 "    \"type\": \"red\",\n" +
                                 "    \"type\": \"Tinto (Red)\",\n" +
                                 "    \"year\": \"2021\",\n" +
-                                "    \"year\": \"N/A\",\n" +
+                                "    \"year\": \"null\",\n" +
                                 "    \"price\": \"11.49\"\n" +
                                 "    \"price\": \"11.99\"\n" +
                                 "  },\n" +
@@ -56,7 +56,7 @@ async function sendImageToClaude(imagePath: string, formatType: string) {
                                 "    \"name\": \"Aproveitei\",\n" +
                                 "    \"name\": \"Conventual Reserva\",\n" +
                                 "    \"type\": \"red\",\n" +
-                                "    \"type\": \"N/A\",\n" +
+                                "    \"type\": \"null\",\n" +
                                 "    \"year\": \"2020\",\n" +
                                 "    \"year\": \"N/A\",\n" +
                                 "    \"price\": \"11.99\"\n" +
