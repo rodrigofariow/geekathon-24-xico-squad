@@ -1,13 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ImageUploader } from './image-uploader';
 import { WineList } from './wine-list';
 import { Wine } from 'lucide-react';
-import { captureWines } from '@/lib/actions';
 
 export function WineAnalyzer() {
   const [image, setImage] = useState<string | null>(null);
@@ -15,34 +14,37 @@ export function WineAnalyzer() {
   const [wines, setWines] = useState<
     Array<{ name: string; price: number; value: number }>
   >([]);
+  const [preloadedResults, setPreloadedResults] = useState<any>(null);
 
-  const handleImageUpload = (imageDataUrl: string) => {
+  const handleImageUpload = (imageDataUrl: string, results?: any) => {
     setImage(imageDataUrl);
     setWines([]);
+    setPreloadedResults(results || null);
   };
+
+  console.log({ analyzing });
+
+  // Watch for preloaded results
+  useEffect(() => {
+    if (preloadedResults) {
+      setAnalyzing(false);
+    }
+  }, [preloadedResults]);
 
   const analyzeImage = async () => {
     if (!image) return;
 
     setAnalyzing(true);
     try {
-      const result = await captureWines(image);
-      console.log('Analysis result:', result);
-
-      // Update wines state with the response
-      if (result.success && result.wines) {
-        setWines(result.wines);
-
-        /* setWines([
-          { name: 'Chateau Margaux 2015', price: 650, value: 9.5 },
-          { name: 'Caymus Cabernet Sauvignon 2018', price: 90, value: 8.7 },
-          { name: 'La Crema Pinot Noir 2019', price: 25, value: 7.8 },
-        ]);*/
+      // If we have preloaded results, just wait for minimum time
+      if (preloadedResults) {
+        setTimeout(() => {
+          setWines(preloadedResults.wines);
+          setAnalyzing(false);
+        }, 1_000);
       }
     } catch (error) {
       console.error('Error analyzing image:', error);
-    } finally {
-      setAnalyzing(false);
     }
   };
 
@@ -90,7 +92,7 @@ export function WineAnalyzer() {
             )}
           </Button>
           <AnimatePresence>
-            {wines.length > 0 && <WineList wines={wines} />}
+            {wines?.length > 0 && <WineList wines={wines} />}
           </AnimatePresence>
         </CardContent>
       </Card>

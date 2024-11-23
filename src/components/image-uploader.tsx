@@ -7,12 +7,11 @@ import { Camera } from 'lucide-react';
 import { captureWines } from '@/lib/actions';
 
 interface ImageUploaderProps {
-  onImageUpload: (imageDataUrl: string) => void;
+  onImageUpload: (imageDataUrl: string, preloadedResults?: any) => void;
 }
 
 export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
   const [dragActive, setDragActive] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleDrag = (e: React.DragEvent) => {
@@ -45,9 +44,20 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
     const file = files[0];
     const reader = new FileReader();
 
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       if (e.target && typeof e.target.result === 'string') {
+        // Immediately show the image
         onImageUpload(e.target.result);
+
+        // Silently make the API call
+        try {
+          const result = await captureWines(e.target.result);
+          console.log('Preloaded analysis result:', result);
+          // Update parent with the results
+          onImageUpload(e.target.result, result);
+        } catch (error) {
+          console.error('Error preloading analysis:', error);
+        }
       }
     };
 
@@ -95,10 +105,9 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
       <Button
         onClick={onButtonClick}
         className="bg-gradient-to-r from-red-800 to-red-600 hover:from-red-900 hover:to-red-700 text-amber-100 transition-all duration-300 ease-in-out transform hover:scale-105"
-        disabled={isLoading}
       >
         <Camera className="mr-2" />
-        {isLoading ? 'Analyzing...' : 'Capture Your Wines'}
+        Capture Your Wines
       </Button>
     </motion.div>
   );
