@@ -116,6 +116,7 @@ const parseGuessedWines = (
 };
 
 type ResponseWine = {
+  hitId: number;
   name: string;
   year: number | null;
   price: number | null;
@@ -144,6 +145,7 @@ async function partitionData(
       const year = parseYearFromClaudeRawYear(hit.vintages[0].year);
       const hitVintagePrice = await getWineHitVintagesPrices(hit.id);
       readyWines.push({
+        hitId: hit.id,
         name: hit.vintages[0].name,
         year,
         imgUrl: getValidUrlFromVivinoImgPath(hit.image.location),
@@ -441,6 +443,7 @@ export async function uploadUserImage({
       }
       const hitVintagePrice = hitsVintagePrices.find((h) => h.hitId === hit.id);
       winesResponseArray.push({
+        hitId: hit.id,
         name: hit.vintages[0].name,
         year: parseYearFromClaudeRawYear(hit.vintages[0].year),
         imgUrl: getValidUrlFromVivinoImgPath(hit.image.location),
