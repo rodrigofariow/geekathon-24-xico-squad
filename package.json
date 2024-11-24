@@ -25,7 +25,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -34,5 +33,6 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.7.2"
-  }
+  },
+  "packageManager": "pnpm@9.13.1+sha512.5ac37545851c55ec58521b6c285db6f848f93ca70889beb4145f5b40fe234e4ea4faee4dad12ac5c139e494374c65d9c3a6ec9a25954378fa286a250e68d2f20"
 }
