@@ -52,8 +52,6 @@ WineSelect turns a complicated decision into a simple, enjoyable experience. Whe
 
 🌐 [Web Application: help.wine](https://help.wine)
 
-🌐 [Alternative URL if the help.win did not work: https://geekathon-24-xico-squad.vercel.app](https://geekathon-24-xico-squad.vercel.app/)
-
 - **User:** xico
 - **Password:** xicothecat
 
