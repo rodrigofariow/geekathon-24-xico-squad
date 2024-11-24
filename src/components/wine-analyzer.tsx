@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ImageUploader } from './image-uploader';
-import { WineList } from './wine-list';
-import { Wine } from 'lucide-react';
-import type { UploadUserImageResponse } from 'lib/main';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ImageUploader } from "./image-uploader";
+import { WineList } from "./wine-list";
+import { Wine } from "lucide-react";
+import type { UploadUserImageResponse } from "lib/main";
 
 export function WineAnalyzer() {
   const [image, setImage] = useState<string | null>(null);
   const [analyzing, setAnalyzing] = useState(false);
   const [wines, setWines] = useState<
-    UploadUserImageResponse['winesArray'] | undefined
+    UploadUserImageResponse["winesArray"] | undefined
   >(undefined);
 
   const handleImageUpload = (
@@ -40,7 +40,7 @@ export function WineAnalyzer() {
         }, 1_000);
       }
     } catch (error) {
-      console.error('Error analyzing image:', error);
+      console.error("Error analyzing image:", error);
     }
   };
 
@@ -60,7 +60,7 @@ export function WineAnalyzer() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="mt-4"
+                className="mt-4 flex justify-self-center max-w-3xl"
               >
                 <img
                   src={image}
