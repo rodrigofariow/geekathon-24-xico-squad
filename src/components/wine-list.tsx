@@ -1,24 +1,19 @@
-import { motion } from "framer-motion";
-import type { UploadUserImageResponse } from "lib/main";
-import { Star } from "lucide-react";
-import Image from "next/image";
-import { Suspense } from "react";
+import { motion } from 'framer-motion';
+import type { UploadUserImageResponse } from 'lib/main';
+import { Star } from 'lucide-react';
+import { Suspense } from 'react';
 
 interface WineListProps {
-  wines: UploadUserImageResponse["winesArray"];
+  wines: UploadUserImageResponse['winesArray'];
 }
 
 function WineImage({ url }: { url: string }) {
   return (
     <div className="relative w-16 h-16 mr-4">
-      <Image
+      <img
         src={url}
         alt="Wine bottle"
-        fill
-        className="object-cover rounded-md"
-        sizes="64px"
-        placeholder="blur"
-        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx0fHRsdHSIeHx8hHiMkIyAgJCQjLjouMC0yLiRHSj0+PUg3OD5MREVESkQ8SEtEPj//2wBDAQoLCw4NDhwQEBw+JSAlPj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+        className="object-cover rounded-md max-h-full"
       />
     </div>
   );
