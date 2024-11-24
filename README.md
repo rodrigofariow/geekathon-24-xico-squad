@@ -74,4 +74,4 @@ The network blocks some content due to its association with wine, which can limi
 Our back-end infrastructure is not fully optimized at the moment due to time constraints of the hackathon. It runs **2x faster** in a local environment.
 
 🛠️ **Running Locally:**  
-To run the application locally, please contact a team member for assistance.
+To run the application locally, please contact a team member for assistance since it's needed to create a env properties files with secrets.
