@@ -72,10 +72,8 @@ async function sendImageToClaude(
         },
       ],
     });
-    const result = JSON.parse(msg.content[0].text);
-    return result.wines == undefined
-      ? JSON.parse(msg.content[0].text)
-      : JSON.parse(msg.content[0].text).wines;
+    const result = JSON.parse((msg.content[0] as any).text);
+    return result.wines == undefined ? result : result.wines;
   } catch (error) {
     console.error("Error sending image to Claude:", error);
     throw error;

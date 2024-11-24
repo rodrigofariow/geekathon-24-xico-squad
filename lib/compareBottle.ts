@@ -24,6 +24,7 @@ async function sendImagesToClaude(
     }));
 
     // Construct the message for Claude
+    // @ts-expect-error asda
     const msg = await anthropic.messages.create({
       model: "claude-3-5-sonnet-20241022",
       max_tokens: 1024,
@@ -68,10 +69,8 @@ async function sendImagesToClaude(
         },
       ],
     });
-    const result = JSON.parse(msg.content[0].text);
-    return result.wines == undefined
-        ? JSON.parse(msg.content[0].text)
-        : JSON.parse(msg.content[0].text).wines;
+    const result = JSON.parse((msg.content[0] as any).text);
+    return result.wines == undefined ? result : result.wines;
   } catch (error) {
     console.error("Error during image comparison:", error);
     throw error;

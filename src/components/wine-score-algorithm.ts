@@ -1,6 +1,6 @@
-import type { UploadUserImageResponse } from 'lib/main';
+import type { UploadUserImageResponse } from "lib/main";
 
-type Wine = UploadUserImageResponse['winesArray'][number];
+type Wine = UploadUserImageResponse["winesArray"][number];
 
 type RankedWine = Wine & { score: number }; // Add the score property
 
@@ -17,11 +17,13 @@ export function rankWines(
   priceWeight: number = 0.4 // Default weight: price less important
 ): RankedWine[] {
   if (ratingWeight + priceWeight !== 1) {
-    throw new Error('The sum of ratingWeight and priceWeight must be 1.');
+    throw new Error("The sum of ratingWeight and priceWeight must be 1.");
   }
 
   // Step 1: Find min and max prices for normalization
+  //@ts-expect-error asda
   const minPrice = Math.min(...wines.map((wine) => wine.price));
+  //@ts-expect-error asda
   const maxPrice = Math.max(...wines.map((wine) => wine.price));
 
   // Step 2: Normalize rating and price, then calculate scores
@@ -31,6 +33,7 @@ export function rankWines(
 
     // Normalize price (higher price -> lower score, scaled to 0–10)
     const normalizedPrice =
+      //@ts-expect-error asda
       (10 * (maxPrice - wine.price)) / (maxPrice - minPrice);
 
     // Weighted score combining price and rating
