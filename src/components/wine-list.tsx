@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
-import type { UploadUserImageResponse } from "lib/main";
-import { Star } from "lucide-react";
-import { Suspense } from "react";
+import { motion } from 'framer-motion';
+import type { UploadUserImageResponse } from 'lib/main';
+import { Star } from 'lucide-react';
+import { Suspense, useCallback } from 'react';
 
 interface WineListProps {
-  wines: UploadUserImageResponse["winesArray"];
+  wines: UploadUserImageResponse['winesArray'];
 }
 
 function WineImage({ url }: { url: string }) {
@@ -29,6 +29,10 @@ export function WineList({ wines }: WineListProps) {
     return (a.price ?? 0) - (b.price ?? 0);
   });
 
+  const onElementMountRef = useCallback((element: HTMLDivElement) => {
+    element?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -36,6 +40,7 @@ export function WineList({ wines }: WineListProps) {
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
       className="mt-6"
+      ref={onElementMountRef}
     >
       <h2 className="text-xl sm:text-2xl font-serif italic mb-4 text-amber-100 drop-shadow-md">
         Curated Selection
