@@ -61,12 +61,12 @@ export function WineAnalyzer() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="mt-4 flex justify-self-center max-w-3xl"
+                className="mt-4 flex justify-center"
               >
                 <img
                   src={image}
                   alt="Uploaded wine collection"
-                  className="max-w-full h-auto rounded-lg shadow-lg"
+                  className="w-full sm:w-3/4 xl:w-1/2 rounded-lg shadow-lg"
                 />
               </motion.div>
             )}
