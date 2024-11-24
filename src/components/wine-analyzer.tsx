@@ -21,6 +21,7 @@ export function WineAnalyzer() {
     results?: UploadUserImageResponse,
   ) => {
     setImage(imageDataUrl);
+    setWines(undefined);
 
     if (results) {
       setWines(results?.winesArray || []);
