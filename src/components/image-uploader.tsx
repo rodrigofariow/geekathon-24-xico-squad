@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
 import { captureWines } from '@/lib/actions';
 import type { UploadUserImageResponse } from 'lib/main';
+import { useToast } from '@/hooks/use-toast';
 
 interface ImageUploaderProps {
   onImageUpload: (
@@ -17,6 +18,7 @@ interface ImageUploaderProps {
 export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -60,6 +62,11 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
           // Update parent with the results
           onImageUpload(e.target.result, result);
         } catch (error) {
+          toast({
+            variant: 'destructive',
+            title: 'Error',
+            description: 'Failed to capture wines',
+          });
           console.error('Error preloading analysis:', error);
         }
       }
