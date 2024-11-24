@@ -85,7 +85,6 @@ export async function getAllBottlesFromImage(originalImage: VivinoImgMeta) {
   try {
     const allowedTypes = ["jpeg", "png"];
 
-    // Check if the file extension is valid
     if (
       !originalImage.fileExtension ||
       !allowedTypes.includes(originalImage.fileExtension)
