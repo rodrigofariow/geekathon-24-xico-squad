@@ -21,6 +21,14 @@ function WineImage({ url }: { url: string }) {
   );
 }
 
+// Helper function to format ratings count
+function formatRatingsCount(count: number): string {
+  if (count >= 1000) {
+    return `${(count / 1000).toFixed(1)}K`;
+  }
+  return count.toString();
+}
+
 export function WineList({ wines }: WineListProps) {
   const onElementMountRef = useCallback((element: HTMLDivElement) => {
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -121,22 +129,25 @@ export function WineList({ wines }: WineListProps) {
                   <div className="text-base text-red-700">
                     Price: {`€${wine.price}` || 'N/A'}
                   </div>
-                  <div className="flex items-center">
-                    <span className="text-amber-500 mr-1 flex">
-                      {Array.from({ length: Math.round(wine.rating) }).map(
-                        (_, i) => (
-                          <Star
-                            key={i}
-                            className="inline-block w-4 h-4 fill-current"
-                          />
-                        ),
-                      )}
-                    </span>
-                    <span className="text-sm text-red-700">
-                      {wine.rating.toFixed(1)}
-                    </span>
-                    <span className="text-sm text-red-700/60 ml-1">
-                      {wine.ratingsCount && `(${wine.ratingsCount} ratings)`}
+                  <div className="flex flex-col sm:flex-row sm:items-center">
+                    <div className="flex items-center">
+                      <span className="text-amber-500 mr-1 flex">
+                        {Array.from({ length: Math.round(wine.rating) }).map(
+                          (_, i) => (
+                            <Star
+                              key={i}
+                              className="inline-block w-4 h-4 fill-current"
+                            />
+                          ),
+                        )}
+                      </span>
+                      <span className="text-sm font-medium text-red-700">
+                        {wine.rating.toFixed(1)}
+                      </span>
+                    </div>
+                    <span className="text-sm text-red-700/60 mt-0.5 sm:mt-0 sm:ml-2 sm:border-l sm:border-red-200 sm:pl-2">
+                      {wine.ratingsCount &&
+                        `${formatRatingsCount(wine.ratingsCount)} reviews`}
                     </span>
                   </div>
                 </div>
