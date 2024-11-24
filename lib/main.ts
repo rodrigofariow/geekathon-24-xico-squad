@@ -123,7 +123,7 @@ function getMostLikelyHitsForSonnetGuessedWine(
     */
   const simplifiedMatchedHits: VivinoSearchResult['hits'] = [];
   for (const hit of result.hits) {
-    const matchedVintagesByYear = hit.vintages.filter((vintage) => {
+    let matchedVintagesByYear = hit.vintages.filter((vintage) => {
       if (Number(vintage.year) === sonnetGuessedWine.year) {
         return true;
       }
@@ -135,6 +135,10 @@ function getMostLikelyHitsForSonnetGuessedWine(
       }
       return false;
     });
+    matchedVintagesByYear =
+      matchedVintagesByYear.length === 0 && hit.vintages.length > 0
+        ? [hit.vintages[0]]
+        : matchedVintagesByYear;
 
     if (matchedVintagesByYear.length === 0) {
       continue;
@@ -164,6 +168,8 @@ function getMostLikelyHitsForSonnetGuessedWine(
     });
 
     if (matchedVintagesByType.length === 0) {
+      // Default to the first vintage, even if it does not match the type
+      // simplifiedMatchedHits.push({ ...hit, vintages: [hit.vintages[0]] });
       continue;
     }
     if (matchedVintagesByType.length === 1) {
@@ -252,7 +258,7 @@ export async function uploadUserImage({
 
   // await fs.promises.writeFile(
   //   `vivinoResults.json`,
-  //   JSON.stringify(vivinoResults, null, 2)
+  //   JSON.stringify(vivinoResults, null, 2),
   // );
 
   const mostLikelyHitsByGuessedWineName = new Map<
@@ -278,7 +284,7 @@ export async function uploadUserImage({
     });
 
     // console.log(
-    //   `${mostLikelyHits.length} mostLikelyHits for ${sonnetGuessedWine.name} out of ${result.hits.length} total hits:`,
+    //   `mostLikelyHits for ${sonnetGuessedWine.name} out of ${result.hits.length} total hits:`,
     //   mostLikelyHits
     // );
 
