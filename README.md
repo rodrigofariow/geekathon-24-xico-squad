@@ -1,9 +1,11 @@
 # WineSelect
 
 ## Problem
+
 Wine is enjoyed by an estimated 300 million to 1 billion people worldwide, but how many can confidently select a good wine when faced with a variety of bottles? Perhaps only 10% can navigate this challenge effectively.
 
 ### Consider These Scenarios:
+
 - **Supermarket Dilemma:**  
   Picture yourself at the supermarket, standing in front of shelves lined with over 10 different wine bottles. Sure, you could research each one for reviews, ratings, and prices. But after a while, the information overload and the time-consuming process make it hard to decide.
 
@@ -15,9 +17,11 @@ Clearly, selecting the perfect wine can be stressful and time-consuming.
 ---
 
 ## Solution
+
 **WineSelect** is your pocket sommelier. This app helps you make quick, informed wine choices with ease.
 
 ### How It Works:
+
 1. **Snap a Photo:**  
    Take a picture of multiple wine bottles—whether they're on a supermarket shelf or in your home collection.
 2. **Instant Recognition:**  
@@ -28,6 +32,7 @@ Clearly, selecting the perfect wine can be stressful and time-consuming.
 ---
 
 ### Example Use Cases:
+
 - **At Home:**  
   Take a picture of your wines, and the app will generate a ranked list of your wines based on their ratings.
 - **At the Store:**  
@@ -40,15 +45,20 @@ WineSelect turns a complicated decision into a simple, enjoyable experience. Whe
 ## Technical Notes
 
 ### GitHub Repository
+
 🔗 [GitHub: rodrigofariow/geekathon-24-xico-squad](https://github.com/rodrigofariow/geekathon-24-xico-squad)
 
 ### Web Application
+
 🌐 [Web Application: geekathon-24-xico-squad.vercel.app](https://geekathon-24-xico-squad.vercel.app/)
+
 - **User:** xico
 - **Password:** xicothecat
 
 ### Sample Images for Testing
+
 If you don’t have photos of wine bottles available, we’ve got you covered. You can use one of the sample images provided in the GitHub repository:
+
 - `bottles1.jpeg`
 - `bottles2.jpeg`
 - `bottles3.jpeg`
@@ -56,11 +66,12 @@ If you don’t have photos of wine bottles available, we’ve got you covered. Y
 ---
 
 ## Important Notes
+
 ⚠️ **Do NOT use Geekathon WiFi:**  
 The network blocks some content due to its association with wine, which can limit app functionality.
 
 ⚡ **Performance Notice:**  
-The web app is not fully optimized for online use. It runs **2x faster** in a local environment.
+Our back-end infrastructure is not fully optimized at the moment due to time constraints of the hackathon. It runs **2x faster** in a local environment.
 
 🛠️ **Running Locally:**  
-To run the application locally, please contact a team member for assistance.  
+To run the application locally, please contact a team member for assistance.
