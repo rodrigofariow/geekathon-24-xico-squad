@@ -12,7 +12,7 @@ export function PageMain() {
       className="container mx-auto"
     >
       <h1 className="text-5xl font-serif italic mb-8 text-center text-amber-100 drop-shadow-lg">
-        Sommelier&apos;s Choice
+        wAIne
       </h1>
       <WineAnalyzer />
     </motion.div>
