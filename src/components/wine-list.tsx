@@ -94,44 +94,55 @@ export function WineList({ wines }: WineListProps) {
         />
       </div>
 
-      <ul className="space-y-2">
+      <ul className="space-y-4">
         {sortedAndFilteredWines.map((wine, index) => (
           <motion.li
             key={wine.hitId + '-' + index}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className="flex items-center bg-amber-50/70 backdrop-blur-sm p-3 rounded-lg shadow-md border border-amber-200"
+            className="flex flex-col sm:flex-row bg-amber-50/70 backdrop-blur-sm p-4 rounded-lg shadow-md border border-amber-200"
           >
-            <Suspense
-              fallback={
-                <div className="w-16 h-16 mr-4 bg-amber-200/50 animate-pulse rounded-md" />
-              }
-            >
-              {wine.imgUrl && <WineImage url={wine.imgUrl} />}
-            </Suspense>
+            <div className="flex items-start">
+              <Suspense
+                fallback={
+                  <div className="w-16 h-16 mr-4 bg-amber-200/50 animate-pulse rounded-md" />
+                }
+              >
+                {wine.imgUrl && <WineImage url={wine.imgUrl} />}
+              </Suspense>
 
-            <div className="flex-1">
-              <span className="font-serif text-lg text-red-900">
-                {wine.name}
-              </span>
-              <div className="text-base text-red-700">
-                Price: €{wine.price || 'N/A'}
-              </div>
-              <div className="flex items-center mt-1">
-                <span className="text-amber-500 mr-1 flex">
-                  {Array.from({ length: Math.round(wine.rating) }).map(
-                    (_, i) => (
-                      <Star
-                        key={i}
-                        className="inline-block w-4 h-4 fill-current"
-                      />
-                    ),
-                  )}
+              <div className="flex-1 min-w-0">
+                <span className="font-serif text-lg sm:text-xl text-red-900 block mb-1">
+                  {wine.name}
                 </span>
-                <span className="text-sm text-red-700">
-                  {wine.rating.toFixed(1)}
-                </span>
+
+                <div className="flex items-center space-x-4 mb-2">
+                  <div className="text-base text-red-700">
+                    Price: €{wine.price || 'N/A'}
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-amber-500 mr-1 flex">
+                      {Array.from({ length: Math.round(wine.rating) }).map(
+                        (_, i) => (
+                          <Star
+                            key={i}
+                            className="inline-block w-4 h-4 fill-current"
+                          />
+                        ),
+                      )}
+                    </span>
+                    <span className="text-sm text-red-700">
+                      {wine.rating.toFixed(1)}
+                    </span>
+                  </div>
+                </div>
+
+                {wine.description && (
+                  <p className="text-red-800/80 text-sm sm:text-base line-clamp-3 sm:line-clamp-none mt-2">
+                    {wine.description}
+                  </p>
+                )}
               </div>
             </div>
           </motion.li>
