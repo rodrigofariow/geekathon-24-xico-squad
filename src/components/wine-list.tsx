@@ -1,15 +1,7 @@
-<<<<<<< Updated upstream
 import { motion } from "framer-motion";
 import type { UploadUserImageResponse } from "lib/main";
 import { Star } from "lucide-react";
-import Image from "next/image";
 import { Suspense } from "react";
-=======
-import { motion } from 'framer-motion';
-import type { UploadUserImageResponse } from 'lib/main';
-import { Star } from 'lucide-react';
-import { Suspense } from 'react';
->>>>>>> Stashed changes
 
 interface WineListProps {
   wines: UploadUserImageResponse["winesArray"];
