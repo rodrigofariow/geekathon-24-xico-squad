@@ -71,23 +71,36 @@ export function WineAnalyzer() {
               </motion.div>
             )}
           </AnimatePresence>
-          <Button
-            onClick={analyzeImage}
-            disabled={!image || analyzing}
-            className="mt-4 bg-gradient-to-r from-red-800 to-red-600 hover:from-red-900 hover:to-red-700 text-amber-100 transition-all duration-300 ease-in-out transform hover:scale-105"
-          >
-            {analyzing ? (
-              <span className="flex items-center">
-                <Wine className="animate-spin mr-2" />
-                Analyzing...
-              </span>
-            ) : (
-              <span className="flex items-center">
-                <Wine className="mr-2" />
-                Analyze Wines
-              </span>
-            )}
-          </Button>
+          <div className="flex justify-center mt-8 mb-4">
+            <Button
+              onClick={analyzeImage}
+              disabled={!image || analyzing}
+              className={`
+                px-8 py-6 text-lg font-semibold
+                bg-gradient-to-r from-red-800 to-red-600 
+                hover:from-red-900 hover:to-red-700 
+                text-amber-100 
+                transition-all duration-300 ease-in-out 
+                transform hover:scale-105 hover:shadow-lg
+                disabled:from-red-800/50 disabled:to-red-600/50
+                disabled:cursor-not-allowed
+                rounded-xl
+                ${analyzing ? 'animate-pulse' : ''}
+              `}
+            >
+              {analyzing ? (
+                <span className="flex items-center space-x-3">
+                  <Wine className="animate-spin h-6 w-6" />
+                  <span>Analyzing your collection...</span>
+                </span>
+              ) : (
+                <span className="flex items-center space-x-3">
+                  <Wine className="h-6 w-6" />
+                  <span>Analyze Wines</span>
+                </span>
+              )}
+            </Button>
+          </div>
           <AnimatePresence>
             {wines && Number(wines?.length) > 0 && <WineList wines={wines} />}
           </AnimatePresence>

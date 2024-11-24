@@ -22,6 +22,10 @@ function WineImage({ url }: { url: string }) {
 }
 
 export function WineList({ wines }: WineListProps) {
+  const onElementMountRef = useCallback((element: HTMLDivElement) => {
+    element?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
   const { minPrice, maxPrice } = useMemo(() => {
     const prices = wines.map((wine) => wine.price ?? 0);
     return {
@@ -53,6 +57,7 @@ export function WineList({ wines }: WineListProps) {
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
       className="mt-6"
+      ref={onElementMountRef}
     >
       <h2 className="text-xl sm:text-2xl font-serif italic mb-4 text-amber-100 drop-shadow-md">
         Curated Selection
@@ -110,7 +115,9 @@ export function WineList({ wines }: WineListProps) {
               <span className="font-serif text-lg text-red-900">
                 {wine.name}
               </span>
-              <div className="text-base text-red-700">Price: €{wine.price}</div>
+              <div className="text-base text-red-700">
+                Price: €{wine.price || 'N/A'}
+              </div>
               <div className="flex items-center mt-1">
                 <span className="text-amber-500 mr-1 flex">
                   {Array.from({ length: Math.round(wine.rating) }).map(
