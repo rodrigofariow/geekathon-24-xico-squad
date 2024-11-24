@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'AI Wine Assistant',
-  description: 'AI Wine Assistant',
+  title: 'wAIne',
+  description: 'wAIne',
 };
 
 export default function RootLayout({
