@@ -1,4 +1,5 @@
 import { Anthropic } from "@anthropic-ai/sdk";
+import { z } from "zod";
 
 // Initialize the Anthropic client
 const anthropic = new Anthropic({
@@ -96,8 +97,21 @@ export async function getOtherImagesPresenceInOriginalImage({
     isPresent: boolean;
   }>
 > {
+  const singleResultSchema = z.object({
+    name: z.string(),
+    fileName: z.string(),
+    isPresent: z.boolean(),
+  });
+  const schema = z.array(singleResultSchema).or(singleResultSchema);
   // Use the sendImagesToClaude function
-  return await sendImagesToClaude(originalImage, otherImages);
+  const claudeResult = await sendImagesToClaude(originalImage, otherImages);
+  const parseResult = schema.safeParse(claudeResult);
+  if (!parseResult.success) {
+    return [];
+  }
+  return Array.isArray(parseResult.data)
+    ? parseResult.data
+    : [parseResult.data];
 }
 
 // Example usage     const results = await compare("bottles.jpeg", "asdssi1.jpeg", "ermelindaQWERT.jpeg");

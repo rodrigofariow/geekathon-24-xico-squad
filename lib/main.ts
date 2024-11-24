@@ -1,4 +1,5 @@
 import { z } from "zod";
+import * as R from "remeda";
 import {
   getAllBottlesFromImage,
   type SonnetResponseWithGuesses,
@@ -249,6 +250,11 @@ export async function uploadUserImage({
   // 2. Get results from vivino for each guessed wine
   const vivinoResults = await Promise.all(vivinoCalls);
 
+  // await fs.promises.writeFile(
+  //   `vivinoResults.json`,
+  //   JSON.stringify(vivinoResults, null, 2)
+  // );
+
   const mostLikelyHitsByGuessedWineName = new Map<
     // Wine name
     string,
@@ -317,7 +323,6 @@ export async function uploadUserImage({
     const imgsBase64 = await Promise.all(
       wineHits.map((hit) => {
         const imgUrl = getValidUrlFromVivinoImgPath(hit.image.location);
-
         return fetch(imgUrl)
           .then((res) => res.arrayBuffer())
           .then((buffer) => Buffer.from(buffer).toString("base64"));
@@ -405,6 +410,6 @@ export async function uploadUserImage({
   // await Bun.write(`results_main.json`, JSON.stringify(vivinoResults, null, 2));
 
   return {
-    winesArray: winesResponseArray,
+    winesArray: R.uniqueBy(winesResponseArray, (key) => key.name),
   };
 }
