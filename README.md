@@ -59,9 +59,9 @@ WineSelect turns a complicated decision into a simple, enjoyable experience. Whe
 
 If you don’t have photos of wine bottles available, we’ve got you covered. You can use one of the sample images provided in the GitHub repository:
 
-- `bottles1.jpeg`
-- `bottles2.jpeg`
-- `bottles3.jpeg`
+- `test_images/bottles1.jpeg`
+- `test_images/bottles2.jpeg`
+- `test_images/bottles3.jpeg`
 
 ---
 
