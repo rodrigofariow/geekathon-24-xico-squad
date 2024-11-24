@@ -11,7 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 interface ImageUploaderProps {
   onImageUpload: (
     imageDataUrl: string,
-    preloadedResults?: UploadUserImageResponse
+    preloadedResults?: UploadUserImageResponse,
   ) => void;
 }
 

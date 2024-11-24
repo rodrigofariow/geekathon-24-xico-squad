@@ -1,18 +1,18 @@
-import { z } from "zod";
-import * as R from "remeda";
+import { z } from 'zod';
+import * as R from 'remeda';
 import {
   getAllBottlesFromImage,
   type SonnetResponseWithGuesses,
-} from "./anthropic";
-import { getOtherImagesPresenceInOriginalImage } from "./compareBottle";
-import type { VivinoImgMeta } from "./compareBottle";
-import { searchVivinoWinesFromQuery } from "./vivino";
+} from './anthropic';
+import { getOtherImagesPresenceInOriginalImage } from './compareBottle';
+import type { VivinoImgMeta } from './compareBottle';
+import { searchVivinoWinesFromQuery } from './vivino';
 
 function getValidUrlFromVivinoImgPath(path: string): string {
-  if (path.startsWith("//")) {
+  if (path.startsWith('//')) {
     return `https:${path}`;
   }
-  if (path.startsWith("http")) {
+  if (path.startsWith('http')) {
     return path;
   }
   return path;
@@ -22,11 +22,11 @@ type VivinoSearchResult = Awaited<
   ReturnType<typeof searchVivinoWinesFromQuery>
 >;
 
-const redWineTypeEquivalentArray = ["tinto", "red"];
-const whiteWineTypeEquivalentArray = ["branco", "white"];
+const redWineTypeEquivalentArray = ['tinto', 'red'];
+const whiteWineTypeEquivalentArray = ['branco', 'white'];
 
 const parseYearFromClaudeRawYear = (
-  rawYear: string | null | undefined
+  rawYear: string | null | undefined,
 ): number | null => {
   const yearRegex = /(\d{2,4})/;
   if (!rawYear) {
@@ -46,18 +46,18 @@ const parseYearFromClaudeRawYear = (
 
 type ParsedGuessedWine = {
   name: string;
-  type: "red" | "white" | null;
+  type: 'red' | 'white' | null;
   year: number | null;
 };
 
 const parseGuessedWines = (
-  guessedWines: SonnetResponseWithGuesses
+  guessedWines: SonnetResponseWithGuesses,
 ): ParsedGuessedWine[] => {
   return guessedWines.map(
     (wine): ParsedGuessedWine => ({
       ...wine,
       year: parseYearFromClaudeRawYear(wine.year),
-    })
+    }),
   );
 };
 
@@ -74,12 +74,12 @@ async function partitionData(
   mostLikelyHitsForEachWine: Map<
     // Wine name
     string,
-    VivinoSearchResult["hits"]
-  >
+    VivinoSearchResult['hits']
+  >,
 ) {
   const hitsThatNeedAnthropicCheckingByWineName = new Map<
     string,
-    VivinoSearchResult["hits"]
+    VivinoSearchResult['hits']
   >();
   const readyWines: Array<ResponseWine> = [];
 
@@ -114,14 +114,14 @@ async function partitionData(
 
 function getMostLikelyHitsForSonnetGuessedWine(
   result: VivinoSearchResult,
-  { sonnetGuessedWine }: { sonnetGuessedWine: ParsedGuessedWine }
-): VivinoSearchResult["hits"] {
+  { sonnetGuessedWine }: { sonnetGuessedWine: ParsedGuessedWine },
+): VivinoSearchResult['hits'] {
   /* Logic to match the guessed wine with the vivino result with some heuristics:
       - name
       - year
       - type
     */
-  const simplifiedMatchedHits: VivinoSearchResult["hits"] = [];
+  const simplifiedMatchedHits: VivinoSearchResult['hits'] = [];
   for (const hit of result.hits) {
     const matchedVintagesByYear = hit.vintages.filter((vintage) => {
       if (Number(vintage.year) === sonnetGuessedWine.year) {
@@ -149,13 +149,13 @@ function getMostLikelyHitsForSonnetGuessedWine(
 
     const matchedVintagesByType = matchedVintagesByYear.filter((vintage) => {
       switch (sonnetGuessedWine.type) {
-        case "red":
+        case 'red':
           return redWineTypeEquivalentArray.some((type) =>
-            vintage.seo_name.includes(type)
+            vintage.seo_name.includes(type),
           );
-        case "white":
+        case 'white':
           return whiteWineTypeEquivalentArray.some((type) =>
-            vintage.seo_name.includes(type)
+            vintage.seo_name.includes(type),
           );
         default: {
           return false;
@@ -179,7 +179,7 @@ function getMostLikelyHitsForSonnetGuessedWine(
 }
 
 async function getWineHitVintagesPrices(
-  hitId: VivinoSearchResult["hits"][number]["id"]
+  hitId: VivinoSearchResult['hits'][number]['id'],
 ) {
   const url = `https://www.vivino.com/api/wines/${hitId}/checkout_prices`;
   try {
@@ -196,7 +196,7 @@ async function getWineHitVintagesPrices(
               id: z.number(),
             }),
           }),
-        })
+        }),
       ),
     });
     const rawData = await res.json();
@@ -205,7 +205,7 @@ async function getWineHitVintagesPrices(
     console.dir(parsedData, { depth: null });
     return { hitId, ...parsedData };
   } catch (error) {
-    console.error("Error getting wine hit vintages prices:", error);
+    console.error('Error getting wine hit vintages prices:', error);
     return null;
   }
 }
@@ -217,7 +217,7 @@ export type UploadUserImageResponse = Awaited<
 export async function uploadUserImage({
   img,
 }: {
-  img: { base64: string; ext: "jpeg" | "png" };
+  img: { base64: string; ext: 'jpeg' | 'png' };
 }): Promise<{
   winesArray: Array<ResponseWine>;
 }> {
@@ -227,24 +227,24 @@ export async function uploadUserImage({
   const guessedWines = await getAllBottlesFromImage({
     base64: img.base64,
     fileExtension: img.ext,
-    name: "original",
+    name: 'original',
   });
   const timeGuessEnd = performance.now();
   console.log(
     `Time to getAllBottlesFromImage took ${(
       (timeGuessEnd - timeGuessStart) /
       1000
-    ).toFixed(2)} seconds`
+    ).toFixed(2)} seconds`,
   );
 
-  console.log("------------------------------");
-  console.log("guessedWines", guessedWines);
-  console.log("------------------------------");
+  console.log('------------------------------');
+  console.log('guessedWines', guessedWines);
+  console.log('------------------------------');
 
   const parsedGuessedWines = parseGuessedWines(guessedWines);
 
   const vivinoCalls = parsedGuessedWines.map((wine) =>
-    searchVivinoWinesFromQuery({ query: wine.name })
+    searchVivinoWinesFromQuery({ query: wine.name }),
   );
 
   // 2. Get results from vivino for each guessed wine
@@ -258,7 +258,7 @@ export async function uploadUserImage({
   const mostLikelyHitsByGuessedWineName = new Map<
     // Wine name
     string,
-    VivinoSearchResult["hits"]
+    VivinoSearchResult['hits']
   >();
   for (const [index, result] of vivinoResults.entries()) {
     // console.dir(result, { depth: null });
@@ -270,7 +270,7 @@ export async function uploadUserImage({
       mostLikelyHitsByGuessedWineName.set(sonnetGuessedWine.name, []);
     }
     const mostLikelyHitsForGuessedWine = mostLikelyHitsByGuessedWineName.get(
-      sonnetGuessedWine.name
+      sonnetGuessedWine.name,
     ) as Exclude<typeof mostLikelyHitsForGuessedWineOrUndefined, undefined>;
 
     const mostLikelyHits = getMostLikelyHitsForSonnetGuessedWine(result, {
@@ -311,22 +311,22 @@ export async function uploadUserImage({
   const winesResponseArray: Array<ResponseWine> = readyWines;
 
   console.log(
-    "hitsThatNeedAnthropicCheckingByWineName",
-    hitsThatNeedAnthropicCheckingByWineName
+    'hitsThatNeedAnthropicCheckingByWineName',
+    hitsThatNeedAnthropicCheckingByWineName,
   );
   console.dir(readyWines, { depth: null });
 
   async function processWine(
     wineName: string,
-    wineHits: VivinoSearchResult["hits"]
+    wineHits: VivinoSearchResult['hits'],
   ) {
     const imgsBase64 = await Promise.all(
       wineHits.map((hit) => {
         const imgUrl = getValidUrlFromVivinoImgPath(hit.image.location);
         return fetch(imgUrl)
           .then((res) => res.arrayBuffer())
-          .then((buffer) => Buffer.from(buffer).toString("base64"));
-      })
+          .then((buffer) => Buffer.from(buffer).toString('base64'));
+      }),
     );
 
     // console.log("imgsBase64", imgsBase64);
@@ -337,7 +337,7 @@ export async function uploadUserImage({
       .map((hit, index): VivinoImgMeta | null => {
         const base64FromImgUrl = imgsBase64[index];
 
-        const fileExtension = hit.image.location.split(".").pop();
+        const fileExtension = hit.image.location.split('.').pop();
         if (!fileExtension) {
           return null;
         }
@@ -345,15 +345,15 @@ export async function uploadUserImage({
           name: hit.name,
           base64: base64FromImgUrl,
           fileExtension:
-            fileExtension === "jpg"
-              ? "jpeg"
-              : (fileExtension as "jpeg" | "png"),
+            fileExtension === 'jpg'
+              ? 'jpeg'
+              : (fileExtension as 'jpeg' | 'png'),
         };
       })
       .filter((img) => !!img);
     const otherImagesPresence = await getOtherImagesPresenceInOriginalImage({
       originalImage: {
-        name: "original",
+        name: 'original',
         base64: originalImage.base64,
         fileExtension: originalImage.ext,
       },
@@ -361,13 +361,13 @@ export async function uploadUserImage({
     });
 
     const hitsVintagePricesPromises = wineHits.map((hit) =>
-      getWineHitVintagesPrices(hit.id)
+      getWineHitVintagesPrices(hit.id),
     );
     const hitsVintagePrices = await Promise.all(hitsVintagePricesPromises);
 
-    console.log("------------------------------");
+    console.log('------------------------------');
     console.log(`otherImagesPresence for ${wineName}`, otherImagesPresence);
-    console.log("------------------------------");
+    console.log('------------------------------');
 
     otherImagesPresence.forEach(({ fileName, isPresent }) => {
       if (!isPresent) {
@@ -378,7 +378,7 @@ export async function uploadUserImage({
         return;
       }
       const hitVintagePrice = hitsVintagePrices.find(
-        (h) => h && h.hitId === hit.id
+        (h) => h && h.hitId === hit.id,
       );
       winesResponseArray.push({
         hitId: hit.id,
@@ -403,8 +403,8 @@ export async function uploadUserImage({
   const endTime = performance.now();
   console.log(
     `Total time to processWines took ${((endTime - startTime) / 1000).toFixed(
-      2
-    )} seconds`
+      2,
+    )} seconds`,
   );
 
   // await Bun.write(`results_main.json`, JSON.stringify(vivinoResults, null, 2));

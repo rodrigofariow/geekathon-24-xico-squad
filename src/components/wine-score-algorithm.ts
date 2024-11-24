@@ -1,6 +1,6 @@
-import type { UploadUserImageResponse } from "lib/main";
+import type { UploadUserImageResponse } from 'lib/main';
 
-type Wine = UploadUserImageResponse["winesArray"][number];
+type Wine = UploadUserImageResponse['winesArray'][number];
 
 type RankedWine = Wine & { score: number }; // Add the score property
 
@@ -14,10 +14,10 @@ type RankedWine = Wine & { score: number }; // Add the score property
 export function rankWines(
   wines: Wine[],
   ratingWeight: number = 0.6, // Default weight: ratings more important
-  priceWeight: number = 0.4 // Default weight: price less important
+  priceWeight: number = 0.4, // Default weight: price less important
 ): RankedWine[] {
   if (ratingWeight + priceWeight !== 1) {
-    throw new Error("The sum of ratingWeight and priceWeight must be 1.");
+    throw new Error('The sum of ratingWeight and priceWeight must be 1.');
   }
 
   // Step 1: Find min and max prices for normalization

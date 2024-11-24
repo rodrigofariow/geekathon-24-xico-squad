@@ -48,7 +48,7 @@ export function WineList({ wines }: WineListProps) {
       <ul className="space-y-2">
         {sortedWines.map((wine, index) => (
           <motion.li
-            key={wine.hitId}
+            key={wine.hitId + '-' + index}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -78,7 +78,7 @@ export function WineList({ wines }: WineListProps) {
                           key={i}
                           className="inline-block w-4 h-4 sm:w-6 sm:h-6 fill-current"
                         />
-                      )
+                      ),
                     )}
                   </span>
                   <span className="text-base sm:text-xl text-red-700">

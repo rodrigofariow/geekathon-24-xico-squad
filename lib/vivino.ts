@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 const resSchema = z.object({
   hits: z.array(
@@ -32,12 +32,12 @@ const resSchema = z.object({
               labels_count: z.number(),
               reviews_count: z.number(),
             }),
-          })
+          }),
         )
         .transform((arr) =>
-          arr.sort((a, b) => Number(b.year) - Number(a.year)).slice(0, 5)
+          arr.sort((a, b) => Number(b.year) - Number(a.year)).slice(0, 5),
         ),
-    })
+    }),
   ),
 });
 
@@ -45,41 +45,41 @@ interface SearchParams {
   query: string;
   hitsPerPage?: number;
   filters?: string;
-  attributesToRetrieve?: Array<"name">;
+  attributesToRetrieve?: Array<'name'>;
 }
 
 export async function searchVivinoWinesFromQuery({ query }: { query: string }) {
   const url =
-    "https://9takgwjuxl-dsn.algolia.net/1/indexes/WINES_prod/query?x-algolia-agent=Algolia%20for%20JavaScript%20(4.14.2)%3B%20Browser";
+    'https://9takgwjuxl-dsn.algolia.net/1/indexes/WINES_prod/query?x-algolia-agent=Algolia%20for%20JavaScript%20(4.14.2)%3B%20Browser';
 
   // Default values for optional parameters
   const defaultParams: SearchParams = {
     hitsPerPage: 4,
-    filters: "region.country:pt",
+    filters: 'region.country:pt',
     query,
   };
 
   const response = await fetch(url, {
     headers: {
-      accept: "*/*",
-      "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,pt;q=0.7",
-      "content-type": "application/x-www-form-urlencoded",
-      "sec-ch-ua":
+      accept: '*/*',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8,pt;q=0.7',
+      'content-type': 'application/x-www-form-urlencoded',
+      'sec-ch-ua':
         '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-      "sec-ch-ua-mobile": "?0",
-      "sec-ch-ua-platform": '"macOS"',
-      "sec-fetch-dest": "empty",
-      "sec-fetch-mode": "cors",
-      "sec-fetch-site": "cross-site",
-      "x-algolia-api-key": "60c11b2f1068885161d95ca068d3a6ae",
-      "x-algolia-application-id": "9TAKGWJUXL",
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"macOS"',
+      'sec-fetch-dest': 'empty',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-site': 'cross-site',
+      'x-algolia-api-key': '60c11b2f1068885161d95ca068d3a6ae',
+      'x-algolia-application-id': '9TAKGWJUXL',
     },
-    referrer: "https://www.vivino.com/",
-    referrerPolicy: "origin-when-cross-origin",
+    referrer: 'https://www.vivino.com/',
+    referrerPolicy: 'origin-when-cross-origin',
     body: JSON.stringify(defaultParams),
-    method: "POST",
-    mode: "cors",
-    credentials: "omit",
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'omit',
   });
 
   try {
@@ -93,7 +93,7 @@ export async function searchVivinoWinesFromQuery({ query }: { query: string }) {
     // );
     return parsedResult;
   } catch (error) {
-    console.error("Error performing search:", error);
+    console.error('Error performing search:', error);
     throw error;
   }
 }

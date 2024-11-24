@@ -1,5 +1,5 @@
-import { Anthropic } from "@anthropic-ai/sdk";
-import { z } from "zod";
+import { Anthropic } from '@anthropic-ai/sdk';
+import { z } from 'zod';
 
 // Initialize the Anthropic client
 const anthropic = new Anthropic({
@@ -8,7 +8,7 @@ const anthropic = new Anthropic({
 
 async function sendImagesToClaude(
   originalImage: VivinoImgMeta,
-  potentialImages: VivinoImgMeta[]
+  potentialImages: VivinoImgMeta[],
 ) {
   const fileExtension = originalImage.fileExtension.toLowerCase();
 
@@ -27,29 +27,30 @@ async function sendImagesToClaude(
     // Construct the message for Claude
     // @ts-expect-error asda
     const msg = await anthropic.messages.create({
-      model: "claude-3-5-sonnet-20241022",
+      model: 'claude-3-5-sonnet-20241022',
       max_tokens: 1024,
+      temperature: 0.3,
       messages: [
         {
-          role: "user",
+          role: 'user',
           content: [
             {
-              type: "image",
+              type: 'image',
               source: {
-                type: "base64",
+                type: 'base64',
                 media_type: `image/${fileExtension}`,
                 data: originalImage.base64,
               },
             },
             {
-              type: "text",
+              type: 'text',
               text:
                 `Below are potential images to compare.
                 Only give matches if the image is present if you are 100% sure
                Their file names are:\n\n` +
                 potentialImagesAfterMap
                   .map(({ fileName }, index) => `${index + 1}. ${fileName}`)
-                  .join("\n") +
+                  .join('\n') +
                 `\n\nFor each image, return JSON in the following format:\n` +
                 `{\n` +
                 `  "name": "name of the wine (extracted from the label)",\n` +
@@ -59,9 +60,9 @@ async function sendImagesToClaude(
                 `Respond strictly in JSON format without explanations or extra text.`,
             },
             ...potentialImages.map(({ base64, fileExtension }) => ({
-              type: "image",
+              type: 'image',
               source: {
-                type: "base64",
+                type: 'base64',
                 media_type: `image/${fileExtension}`,
                 data: base64,
               },
@@ -73,7 +74,7 @@ async function sendImagesToClaude(
     const result = JSON.parse((msg.content[0] as any).text);
     return result.wines == undefined ? result : result.wines;
   } catch (error) {
-    console.error("Error during image comparison:", error);
+    console.error('Error during image comparison:', error);
     throw error;
   }
 }
@@ -81,7 +82,7 @@ async function sendImagesToClaude(
 export type VivinoImgMeta = {
   name: string;
   base64: string;
-  fileExtension: "jpeg" | "png";
+  fileExtension: 'jpeg' | 'png';
 };
 
 export async function getOtherImagesPresenceInOriginalImage({
