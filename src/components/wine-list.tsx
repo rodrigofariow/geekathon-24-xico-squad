@@ -125,37 +125,45 @@ export function WineList({ wines }: WineListProps) {
                   {wine.name}
                 </span>
 
-                <div className="flex items-center space-x-4 mb-2">
-                  <div className="text-base text-red-700">
-                    Price: {`€${wine.price}` || 'N/A'}
-                  </div>
-                  <div className="flex flex-col sm:flex-row sm:items-center">
-                    <div className="flex items-center">
-                      <span className="text-amber-500 mr-1 flex">
-                        {Array.from({ length: Math.round(wine.rating) }).map(
-                          (_, i) => (
-                            <Star
-                              key={i}
-                              className="inline-block w-4 h-4 fill-current"
-                            />
-                          ),
-                        )}
-                      </span>
-                      <span className="text-sm font-medium text-red-700">
-                        {wine.rating.toFixed(1)}
-                      </span>
+                {wine.price ? (
+                  <>
+                    <div className="flex items-center space-x-4 mb-2">
+                      <div className="text-base text-red-700">
+                        Price: {`€${wine.price}` || 'N/A'}
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:items-center">
+                        <div className="flex items-center">
+                          <span className="text-amber-500 mr-1 flex">
+                            {Array.from({
+                              length: Math.round(wine.rating),
+                            }).map((_, i) => (
+                              <Star
+                                key={i}
+                                className="inline-block w-4 h-4 fill-current"
+                              />
+                            ))}
+                          </span>
+                          <span className="text-sm font-medium text-red-700">
+                            {wine.rating.toFixed(1)}
+                          </span>
+                        </div>
+                        <span className="text-sm text-red-700/60 mt-0.5 sm:mt-0 sm:ml-2 sm:border-l sm:border-red-200 sm:pl-2">
+                          {wine.ratingsCount &&
+                            `${formatRatingsCount(wine.ratingsCount)} reviews`}
+                        </span>
+                      </div>
                     </div>
-                    <span className="text-sm text-red-700/60 mt-0.5 sm:mt-0 sm:ml-2 sm:border-l sm:border-red-200 sm:pl-2">
-                      {wine.ratingsCount &&
-                        `${formatRatingsCount(wine.ratingsCount)} reviews`}
-                    </span>
-                  </div>
-                </div>
 
-                {wine.description && (
-                  <p className="text-red-800/80 text-sm sm:text-base line-clamp-3 sm:line-clamp-none mt-2">
-                    {wine.description}
-                  </p>
+                    {wine.description && (
+                      <p className="text-red-800/80 text-sm sm:text-base line-clamp-3 sm:line-clamp-none mt-2">
+                        {wine.description}
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <div className="text-red-900/80 text-sm sm:text-base line-clamp-3 sm:line-clamp-none mt-2">
+                    No price available
+                  </div>
                 )}
               </div>
             </div>
