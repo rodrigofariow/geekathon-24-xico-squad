@@ -78,6 +78,8 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
     inputRef.current?.click();
   };
 
+  console.log('dragActive', dragActive);
+
   return (
     <motion.div
       className={`p-6 border-2 border-dashed rounded-lg text-center ${
@@ -88,13 +90,7 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
       onDragOver={handleDrag}
       onDrop={handleDrop}
       animate={{
-        boxShadow: dragActive
-          ? [
-              '0 0 0 3px rgba(220, 38, 38, 0)',
-              '0 0 0 6px rgba(220, 38, 38, 0.3)',
-              '0 0 0 3px rgba(220, 38, 38, 0)',
-            ]
-          : '0 0 0 3px rgba(220, 38, 38, 0)',
+        boxShadow: dragActive ? '0 0 0 6px rgba(220, 38, 38, 0.3)' : 'none',
       }}
       transition={{
         duration: 1.5,
