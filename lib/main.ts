@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import * as R from 'remeda';
+import fs from 'node:fs';
 import {
   getAllBottlesFromImage,
   type SonnetResponseWithGuesses,
@@ -68,6 +69,7 @@ type ResponseWine = {
   price: number | null;
   imgUrl: string;
   rating: number;
+  ratingsCount: number | null;
   description: string | null;
 };
 
@@ -101,6 +103,7 @@ async function partitionData(
           null,
         rating: hit.vintages[0].statistics.ratings_average,
         description: hit.description,
+        ratingsCount: hit.vintages[0].statistics.ratings_count,
       });
       continue;
     }
@@ -398,6 +401,7 @@ export async function uploadUserImage({
           null,
         rating: hit.vintages[0].statistics.ratings_average,
         description: hit.description,
+        ratingsCount: hit.vintages[0].statistics.ratings_count,
       });
     });
   }
