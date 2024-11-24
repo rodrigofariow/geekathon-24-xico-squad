@@ -63,6 +63,11 @@ If you don’t have photos of wine bottles available, we’ve got you covered. Y
 - `test_images/bottles2.jpeg`
 - `test_images/bottles3.jpeg`
 
+### Architecture
+
+![Architecture](./architecture.png)
+[Diagram Link](https://excalidraw.com/#json=EH3HxmxpXen4KmKU6kPXW,9SSKtF-DZp-ssdgEkjzLeA)
+
 ---
 
 ## Important Notes
