@@ -58,7 +58,6 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
         // Silently make the API call
         try {
           const result = await captureWines(e.target.result);
-          console.log('Preloaded analysis result:', result);
           // Update parent with the results
           onImageUpload(e.target.result, result);
         } catch (error) {
