@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WineSelect
 
-## Getting Started
+## Problem
+Wine is enjoyed by an estimated 300 million to 1 billion people worldwide, but how many can confidently select a good wine when faced with a variety of bottles? Perhaps only 10% can navigate this challenge effectively.
 
-First, run the development server:
+### Consider These Scenarios:
+- **Supermarket Dilemma:**  
+  Picture yourself at the supermarket, standing in front of shelves lined with over 10 different wine bottles. Sure, you could research each one for reviews, ratings, and prices. But after a while, the information overload and the time-consuming process make it hard to decide.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **The "Wine Expert" Friend:**  
+  You’re hosting a party, and your wine-savvy friend is bound to critique your selection. You could research every bottle you have at home or send the details to them for approval, but who has the time?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Clearly, selecting the perfect wine can be stressful and time-consuming.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Solution
+**WineSelect** is your pocket sommelier. This app helps you make quick, informed wine choices with ease.
 
-## Learn More
+### How It Works:
+1. **Snap a Photo:**  
+   Take a picture of multiple wine bottles—whether they're on a supermarket shelf or in your home collection.
+2. **Instant Recognition:**  
+   The app identifies each bottle in the image using advanced AI recognition technology.
+3. **Detailed Information:**  
+   For each bottle, you'll see data such as ratings, classifications, prices, and more.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Example Use Cases:
+- **At Home:**  
+  Take a picture of your wines, and the app will generate a ranked list of your wines based on their ratings.
+- **At the Store:**  
+  Snap a photo of the wine shelf, and instantly compare the options to find the best value for your taste and budget.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+WineSelect turns a complicated decision into a simple, enjoyable experience. Whether you’re shopping for wine or impressing your friends, we've got you covered.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Technical Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### GitHub Repository
+🔗 [GitHub: rodrigofariow/geekathon-24-xico-squad](https://github.com/rodrigofariow/geekathon-24-xico-squad)
+
+### Web Application
+🌐 [Web Application: geekathon-24-xico-squad.vercel.app](https://geekathon-24-xico-squad.vercel.app/)
+- **User:** xico
+- **Password:** xicothecat
+
+### Sample Images for Testing
+If you don’t have photos of wine bottles available, we’ve got you covered. You can use one of the sample images provided in the GitHub repository:
+- `bottles1.jpeg`
+- `bottles2.jpeg`
+- `bottles3.jpeg`
+
+---
+
+## Important Notes
+⚠️ **Do NOT use Geekathon WiFi:**  
+The network blocks some content due to its association with wine, which can limit app functionality.
+
+⚡ **Performance Notice:**  
+The web app is not fully optimized for online use. It runs **2x faster** in a local environment.
+
+🛠️ **Running Locally:**  
+To run the application locally, please contact a team member for assistance.  
