@@ -78,8 +78,6 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
     inputRef.current?.click();
   };
 
-  console.log('dragActive', dragActive);
-
   return (
     <motion.div
       className={`p-6 border-2 border-dashed rounded-lg text-center ${
