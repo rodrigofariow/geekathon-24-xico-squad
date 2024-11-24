@@ -119,7 +119,7 @@ export function WineList({ wines }: WineListProps) {
 
                 <div className="flex items-center space-x-4 mb-2">
                   <div className="text-base text-red-700">
-                    Price: €{wine.price || 'N/A'}
+                    Price: {`€${wine.price}` || 'N/A'}
                   </div>
                   <div className="flex items-center">
                     <span className="text-amber-500 mr-1 flex">
@@ -134,6 +134,9 @@ export function WineList({ wines }: WineListProps) {
                     </span>
                     <span className="text-sm text-red-700">
                       {wine.rating.toFixed(1)}
+                    </span>
+                    <span className="text-sm text-red-700/60 ml-1">
+                      {wine.ratingsCount && `(${wine.ratingsCount} ratings)`}
                     </span>
                   </div>
                 </div>
