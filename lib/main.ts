@@ -68,6 +68,7 @@ type ResponseWine = {
   price: number | null;
   imgUrl: string;
   rating: number;
+  description: string | null;
 };
 
 async function partitionData(
@@ -99,6 +100,7 @@ async function partitionData(
           hitVintagePrice?.checkout_prices.at(0)?.availability.median.amount ??
           null,
         rating: hit.vintages[0].statistics.ratings_average,
+        description: hit.description,
       });
       continue;
     }
@@ -395,6 +397,7 @@ export async function uploadUserImage({
           hitVintagePrice?.checkout_prices.at(0)?.availability.median.amount ??
           null,
         rating: hit.vintages[0].statistics.ratings_average,
+        description: hit.description,
       });
     });
   }
