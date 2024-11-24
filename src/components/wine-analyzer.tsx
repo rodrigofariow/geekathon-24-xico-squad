@@ -37,7 +37,7 @@ export function WineAnalyzer() {
       if (wines) {
         setTimeout(() => {
           setAnalyzing(false);
-        }, 1_000);
+        }, 3_000);
       }
     } catch (error) {
       console.error('Error analyzing image:', error);
