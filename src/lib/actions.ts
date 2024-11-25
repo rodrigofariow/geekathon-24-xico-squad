@@ -9,8 +9,6 @@ export async function captureWines(
   if (currentController) {
     currentController.abort();
   }
-
-  // Create new controller for this request
   currentController = new AbortController();
 
   try {
