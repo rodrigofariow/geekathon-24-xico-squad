@@ -25,6 +25,15 @@ export async function POST(request: Request) {
     return NextResponse.json(response);
   } catch (error) {
     console.error('Wine capture error:', error);
-    return NextResponse.json({ error }, { status: 500 });
+
+    // Return detailed error to the frontend
+    return NextResponse.json(
+      {
+        error: {
+          message: error.message, // Short error message
+        },
+      },
+      { status: 500 },
+    );
   }
 }

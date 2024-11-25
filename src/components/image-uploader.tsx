@@ -64,9 +64,8 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
           toast({
             variant: 'destructive',
             title: 'Error',
-            description: 'Failed to capture wines',
+            description: error.message,
           });
-          console.error('Error preloading analysis:', error);
         }
       }
     };

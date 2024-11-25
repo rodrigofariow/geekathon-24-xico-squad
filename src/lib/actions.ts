@@ -24,7 +24,8 @@ export async function captureWines(
     });
 
     if (!response.ok) {
-      throw new Error('Failed to capture wines');
+      const errorData = await response.json();
+      throw new Error(errorData.error.message);
     }
 
     const result = await response.json();
