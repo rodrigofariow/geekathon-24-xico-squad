@@ -8,6 +8,8 @@ import { ImageUploader } from './image-uploader';
 import { WineList } from './wine-list';
 import { Wine } from 'lucide-react';
 import type { UploadUserImageResponse } from 'lib/main';
+import { captureWines } from '@/lib/actions';
+import { toast } from '@/hooks/use-toast';
 
 export function WineAnalyzer() {
   const [image, setImage] = useState<string | null>(null);
@@ -16,17 +18,9 @@ export function WineAnalyzer() {
     UploadUserImageResponse['winesArray'] | undefined
   >(undefined);
 
-  const handleImageUpload = (
-    imageDataUrl: string,
-    results?: UploadUserImageResponse,
-  ) => {
+  const handleImageUpload = (imageDataUrl: string) => {
     setImage(imageDataUrl);
-    setWines(undefined);
-
-    if (results) {
-      setWines(results?.winesArray || []);
-      setAnalyzing(false);
-    }
+    setWines([]);
   };
 
   const analyzeImage = async () => {
@@ -34,14 +28,17 @@ export function WineAnalyzer() {
 
     setAnalyzing(true);
     try {
-      // If we have preloaded results, just wait for minimum time
-      if (wines) {
-        setTimeout(() => {
-          setAnalyzing(false);
-        }, 3_000);
-      }
+      const result = await captureWines(image);
+      setWines(result.winesArray);
     } catch (error) {
-      console.error('Error analyzing image:', error);
+      console.error('Error generating wine list:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: error.message,
+      });
+    } finally {
+      setAnalyzing(false);
     }
   };
 

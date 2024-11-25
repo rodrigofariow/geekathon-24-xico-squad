@@ -4,21 +4,14 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
-import { captureWines } from '@/lib/actions';
-import type { UploadUserImageResponse } from 'lib/main';
-import { useToast } from '@/hooks/use-toast';
 
 interface ImageUploaderProps {
-  onImageUpload: (
-    imageDataUrl: string,
-    preloadedResults?: UploadUserImageResponse,
-  ) => void;
+  onImageUpload: (imageDataUrl: string) => void;
 }
 
 export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { toast } = useToast();
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -50,23 +43,10 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
     const file = files[0];
     const reader = new FileReader();
 
-    reader.onload = async (e) => {
+    reader.onload = (e) => {
       if (e.target && typeof e.target.result === 'string') {
-        // Immediately show the image
+        // Just pass the image data, don't trigger the API call
         onImageUpload(e.target.result);
-
-        // Silently make the API call
-        try {
-          const result = await captureWines(e.target.result);
-          // Update parent with the results
-          onImageUpload(e.target.result, result);
-        } catch (error) {
-          toast({
-            variant: 'destructive',
-            title: 'Error',
-            description: error.message,
-          });
-        }
       }
     };
 

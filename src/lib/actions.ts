@@ -35,8 +35,7 @@ export async function captureWines(
     if (error.name === 'AbortError') {
       console.log('Request was aborted');
     } else {
-      console.error('Error capturing wines:', error);
+      throw error;
     }
-    throw error;
   }
 }
