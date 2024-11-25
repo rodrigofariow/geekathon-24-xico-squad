@@ -4,9 +4,9 @@ import fs from 'node:fs';
 import {
   getAllBottlesFromImage,
   type SonnetResponseWithGuesses,
-} from './anthropic';
-import { getOtherImagesPresenceInOriginalImage } from './compareBottle';
-import type { VivinoImgMeta } from './compareBottle';
+} from './AnthropicApi';
+import { getOtherImagesPresenceInOriginalImage } from './AnthropicApi';
+import type { VivinoImgMeta } from './AnthropicApi';
 import { searchVivinoWinesFromQuery } from './vivino';
 
 function getValidUrlFromVivinoImgPath(path: string): string {
