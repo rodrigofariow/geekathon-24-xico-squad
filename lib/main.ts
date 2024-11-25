@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import * as R from 'remeda';
-import fs from 'node:fs';
+// import fs from 'node:fs';
 import {
   getAllBottlesFromImage,
   type SonnetResponseWithGuesses,
@@ -295,7 +295,9 @@ export async function uploadUserImage({
 
     if (mostLikelyHits.length === 0) {
       const defaultHit = result.hits[0];
-      mostLikelyHitsForGuessedWine.push(defaultHit);
+      if (defaultHit) {
+        mostLikelyHitsForGuessedWine.push(defaultHit);
+      }
       continue;
     }
 
