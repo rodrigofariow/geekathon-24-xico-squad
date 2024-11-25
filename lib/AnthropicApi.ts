@@ -1,6 +1,6 @@
-import {Anthropic} from '@anthropic-ai/sdk';
-import {z} from 'zod';
-import type {ImageBlockParam} from "@anthropic-ai/sdk/src/resources/messages";
+import { Anthropic } from '@anthropic-ai/sdk';
+import { z } from 'zod';
+import type { ImageBlockParam } from '@anthropic-ai/sdk/src/resources/messages';
 
 // Initialize the Anthropic client
 const anthropic = new Anthropic({
@@ -109,13 +109,15 @@ async function sendImagesToClaude(
   originalImage: VivinoImgMeta,
   potentialImages: VivinoImgMeta[],
 ) {
-  const fileExtension = originalImage.fileExtension.toLowerCase() as 'jpeg' | 'png';
+  const fileExtension = originalImage.fileExtension.toLowerCase() as
+    | 'jpeg'
+    | 'png';
 
   try {
     const potentialImagesAfterMap = potentialImages.map((element) => ({
       data: element.base64 as string,
       fileName: element.name as string,
-      extension: element.fileExtension as 'jpeg' | 'png'
+      extension: element.fileExtension as 'jpeg' | 'png',
     }));
 
     const msg = await anthropic.messages.create({
@@ -141,7 +143,7 @@ async function sendImagesToClaude(
                 `Only give matches if the image is present if you are 100% sure.\n` +
                 `Their file names are:\n\n` +
                 potentialImagesAfterMap
-                  .map(({fileName}, index) => `${index + 1}. ${fileName}`)
+                  .map(({ fileName }, index) => `${index + 1}. ${fileName}`)
                   .join('\n') +
                 `\n\nFor each image, return JSON in the following format:\n` +
                 `{\n` +
@@ -151,14 +153,17 @@ async function sendImagesToClaude(
                 `}\n` +
                 `Respond strictly in JSON format without explanations or extra text.`,
             },
-            ...potentialImages.map(({base64, fileExtension}) => ({
-              type: 'image' as 'image',
-              source: {
-                type: 'base64' as 'base64',
-                media_type: `image/${fileExtension}`,
-                data: base64,
-              },
-            } as ImageBlockParam)),
+            ...potentialImages.map(
+              ({ base64, fileExtension }) =>
+                ({
+                  type: 'image' as const,
+                  source: {
+                    type: 'base64' as const,
+                    media_type: `image/${fileExtension}`,
+                    data: base64,
+                  },
+                }) satisfies ImageBlockParam,
+            ),
           ],
         },
       ],
@@ -172,9 +177,9 @@ async function sendImagesToClaude(
 }
 
 export async function getOtherImagesPresenceInOriginalImage({
-                                                              originalImage,
-                                                              otherImages,
-                                                            }: {
+  originalImage,
+  otherImages,
+}: {
   originalImage: VivinoImgMeta;
   otherImages: VivinoImgMeta[];
 }): Promise<
